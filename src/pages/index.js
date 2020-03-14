@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Container, CardContainer, Card } from '../components';
 import { api } from '../utils';
 
 const IndexPage = () => {
@@ -20,11 +21,15 @@ const IndexPage = () => {
   return (
     <>
       {summary ? (
-        <div>
-          <p>Confirmed: {summary.confirmed.value}</p>
-          <p>Deaths: {summary.deaths.value}</p>
-          <p>Recovered: {summary.recovered.value}</p>
-        </div>
+        <Container>
+          <h1>Summary</h1>
+
+          <CardContainer>
+            <Card default title="Confirmed" count={summary.confirmed.value} />
+            <Card danger title="Deaths" count={summary.deaths.value} />
+            <Card default title="Recovered" count={summary.recovered.value} />
+          </CardContainer>
+        </Container>
       ) : (
         <p>Loading</p>
       )}
