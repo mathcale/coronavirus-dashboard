@@ -1,0 +1,21 @@
+{
+  "name": "corona-dashboard",
+  "version": "1.0.0",
+  "author": {
+    "name": "Matheus Calegaro",
+    "email": "hello@matheus.me",
+    "url": "https://matheus.me"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "next": "^9.3.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
