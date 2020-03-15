@@ -34,7 +34,7 @@ const CustomApp = ({ Component, pageProps }) => {
       <Sidebar>
         <SidebarLink title="World Summary" icon={faChartLine} href="/" />
         <SidebarLink title="Filter by Country" icon={faGlobeAmericas} href="/countries" />
-        {/* <SidebarLink title="Be Safe!" icon={faBandAid} href="/safe" /> */}
+        <SidebarLink title="Stay Safe!" icon={faBandAid} href="/safety" />
       </Sidebar>
 
       <main className="main">
