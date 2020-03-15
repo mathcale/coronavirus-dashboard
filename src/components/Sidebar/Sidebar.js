@@ -8,8 +8,19 @@ const Ul = styled.ul`
   margin-left: 20px;
   list-style: none;
 
+  @media screen and (max-width: 1130px) {
+    margin-top: 20px;
+    text-align: center;
+  }
+
   li {
     margin-bottom: 30px;
+
+    @media screen and (max-width: 1130px) {
+      display: inline-block;
+      margin-right: 20px;
+      margin-bottom: 0px;
+    }
 
     a {
       font-size: 18px;

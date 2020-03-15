@@ -7,6 +7,11 @@ export const Form = styled.form`
 
   label {
     margin-right: 10px;
+
+    @media screen and (max-width: 1130px) {
+      display: block;
+      margin-bottom: 10px;
+    }
   }
 
   select {
@@ -15,9 +20,15 @@ export const Form = styled.form`
     padding: 10px 15px;
     background-color: var(--card-color);
     border: 1px solid var(--accent-color);
-    border-radius: 50%;
+    border-radius: 10px;
     font-size: 16px;
     color: var(--white);
+
+    @media screen and (max-width: 1130px) {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
 
   button:focus,
@@ -37,6 +48,10 @@ export const Form = styled.form`
     color: var(--white);
     cursor: pointer;
     transition: all 300ms ease-in-out;
+
+    @media screen and (max-width: 1130px) {
+      display: block;
+    }
   }
 
   button:hover {

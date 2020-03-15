@@ -1,3 +1,4 @@
+export * from './GlobalStyles/GlobalStyles';
 export * from './PageAwareLink/PageAwareLink';
 export * from './Sidebar/Sidebar';
 export * from './Containers/Container';

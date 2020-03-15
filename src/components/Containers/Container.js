@@ -21,6 +21,10 @@ export const Container = styled.div`
     font-size: 21px;
     color: var(--white);
 
+    @media screen and (max-width: 1130px) {
+      width: 100%;
+    }
+
     strong {
       font-weight: bold;
       color: var(--accent-color);

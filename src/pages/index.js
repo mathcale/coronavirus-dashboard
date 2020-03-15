@@ -36,13 +36,13 @@ const IndexPage = () => {
         <Container>
           <h1>World Summary</h1>
 
-          <CardContainer>
+          <CardContainer size="3">
             <Card default title="Confirmed" count={summary.confirmed.value} />
             <Card danger title="Deaths" count={summary.deaths.value} />
             <Card default title="Recovered" count={summary.recovered.value} />
           </CardContainer>
 
-          <CardContainer size="2">
+          <CardContainer size="1">
             <Card chart>
               <Chart
                 options={{
