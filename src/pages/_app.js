@@ -16,8 +16,8 @@ const CustomApp = ({ Component, pageProps }) => {
     <div className="app-wrapper">
       <Sidebar>
         <SidebarLink title="Summary" href="/" />
-        <SidebarLink title="Countries" href="/countries" />
-        <SidebarLink title="About the Virus" href="/about" />
+        {/* <SidebarLink title="Countries" href="/countries" />
+        <SidebarLink title="About the Virus" href="/about" /> */}
       </Sidebar>
 
       <main className="main">
