@@ -1,9 +1,10 @@
 # Coronavirus Dashboard
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Dashboard built with Next/React to help track COVID-19 around the world.
+Dashboard built with Next/React to help track COVID-19 around the world. Created with ❤️ and 😷 by [myself](https://matheus.me) for the world!
 
 ## Contributing
 
@@ -20,8 +21,6 @@ yarn
 # Run!
 yarn dev
 ```
-
-Created with ❤️ and 😷 by [myself](https://matheus.me)
 
 ## Contributors ✨
 
