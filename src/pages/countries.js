@@ -36,7 +36,7 @@ const CountriesPage = () => {
       console.error(`API responded with status code ${err.response.status} and message: ${err.response.data.error.message}`);
 
       if (err.response.status >= 500) {
-        setError('Unexpected error from data source! Please try again later.');
+        setError('Unexpected error from data source! Please try again later!');
       } else {
         setError(err.response.data.error.message);
       }
