@@ -15,7 +15,7 @@ Make sure you have [Node](https://nodejs.org) and [Yarn](https://yarnpkg.com) in
 yarn
 
 # Run!
-yarn dev
+yarn start
 ```
 
 ## Contributors ✨

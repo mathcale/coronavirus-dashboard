@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -10,9 +11,12 @@ import { faChartLine, faGlobeAmericas, faBandAid } from '@fortawesome/free-solid
 import { Sidebar, SidebarBrand, SidebarLink } from '../components';
 import { loadFonts } from '../utils';
 
+import * as gtag from '../utils/gtag';
+
 const CustomApp = ({ Component, pageProps }) => {
   useEffect(() => {
     loadFonts();
+    Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
     return function() {
       document.documentElement.classList.remove('roboto', 'montserrat');
@@ -29,6 +33,20 @@ const CustomApp = ({ Component, pageProps }) => {
         <meta name="author" content="Matheus Calegaro <hello@matheus.me>" />
         <meta name="description" content="Follow COVID-19 infection and recovery numbers around the world" />
         <meta name="keywords" content="coronavirus,covid-19,covid19,dashboard,data,analytics" />
+
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`} />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gtag.GA_TRACKING_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+        }} />
       </Head>
 
       <Sidebar>

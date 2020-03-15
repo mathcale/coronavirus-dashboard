@@ -8,9 +8,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "start": "now dev",
     "build": "next build",
-    "start": "next start"
+    "next:start": "next start",
+    "deploy": "now"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
@@ -26,6 +27,7 @@
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^1.10.7",
+    "now": "^17.0.4"
   }
 }
