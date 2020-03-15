@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const Ul = styled.ul`
+  margin-top: 50px;
   list-style: none;
 
   li {
@@ -46,22 +47,6 @@ const SidebarBrandDiv = styled.div`
   }
 `;
 
-export const Sidebar = props => (
-  <div className="sidebar">
-    <Ul>
-      {props.children}
-    </Ul>
-  </div>
-);
-
-export const SidebarLink = props => (
-  <li>
-    <Link href={props.href}>
-      <a>{props.title}</a>
-    </Link>
-  </li>
-);
-
 export const SidebarBrand = props => (
   <SidebarBrandDiv>
     <Link href="/">
@@ -74,4 +59,22 @@ export const SidebarBrand = props => (
       </>
     </Link>
   </SidebarBrandDiv>
+);
+
+export const Sidebar = props => (
+  <div className="sidebar">
+    <SidebarBrand />
+
+    <Ul>
+      {props.children}
+    </Ul>
+  </div>
+);
+
+export const SidebarLink = props => (
+  <li>
+    <Link href={props.href}>
+      <a>{props.title}</a>
+    </Link>
+  </li>
 );

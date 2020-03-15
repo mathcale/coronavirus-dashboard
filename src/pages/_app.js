@@ -15,8 +15,6 @@ const CustomApp = ({ Component, pageProps }) => {
   return (
     <div className="app-wrapper">
       <Sidebar>
-        <SidebarBrand />
-
         <SidebarLink title="Summary" href="/" />
         <SidebarLink title="Countries" href="/countries" />
         <SidebarLink title="About the Virus" href="/about" />
