@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mathcale",
+      "name": "Matheus Calegaro",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6223070?v=4",
+      "profile": "https://matheus.me",
+      "contributions": [
+        "code",
+        "design",
+        "infra"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "coronavirus-dashboard",
+  "projectOwner": "mathcale",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
