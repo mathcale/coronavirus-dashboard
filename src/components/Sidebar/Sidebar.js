@@ -1,18 +1,35 @@
-import Link from 'next/link';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
 
 const Ul = styled.ul`
-  margin-top: 50px;
+  margin-top: 100px;
+  margin-left: 20px;
   list-style: none;
 
   li {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 
     a {
       font-size: 18px;
       text-decoration: none;
-      color: #fff;
+      color: var(--white);
+      transition: color 300ms ease-in-out;
       cursor: pointer;
+
+      &:hover {
+        color: var(--accent-color);
+      }
+
+      &.selected {
+        font-weight: bold;
+        color: var(--accent-color);
+      }
+
+      svg {
+        margin-right: 5px;
+      }
     }
   }
 `;
@@ -49,7 +66,7 @@ const SidebarBrandDiv = styled.div`
 
 export const SidebarBrand = props => (
   <SidebarBrandDiv>
-    <Link href="/">
+    <PageAwareLink href="/">
       <>
         <div className="icon">
           <img src="/img/virus.png" alt="COVID-19"/>
@@ -57,7 +74,7 @@ export const SidebarBrand = props => (
 
         <h3>Coronavirus Statistics</h3>
       </>
-    </Link>
+    </PageAwareLink>
   </SidebarBrandDiv>
 );
 
@@ -73,8 +90,10 @@ export const Sidebar = props => (
 
 export const SidebarLink = props => (
   <li>
-    <Link href={props.href}>
-      <a>{props.title}</a>
-    </Link>
+    <PageAwareLink href={props.href}>
+      <a>
+        <FontAwesomeIcon icon={props.icon} /> {props.title}
+      </a>
+    </PageAwareLink>
   </li>
 );

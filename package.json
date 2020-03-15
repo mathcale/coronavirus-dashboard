@@ -13,6 +13,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "apexcharts": "^3.16.1",
     "axios": "^0.19.2",
     "fontfaceobserver": "^2.1.0",

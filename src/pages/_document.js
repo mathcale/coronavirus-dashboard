@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
   --card-color: #1c3146;
   --white: #fffef8;
   --text-muted: #66788e;
+  --accent-color: #1eebb3;
 }
 
 * {
