@@ -18,4 +18,4 @@ yarn
 yarn dev
 ```
 
-Created with ❤️ and 😷 by [me](https://matheus.me)
+Created with ❤️ and 😷 by [myself](https://matheus.me)
