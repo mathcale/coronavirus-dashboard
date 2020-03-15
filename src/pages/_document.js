@@ -9,6 +9,8 @@ const GlobalStyles = createGlobalStyle`
   --white: #fffef8;
   --text-muted: #66788e;
   --accent-color: #1eebb3;
+  --border-color: #374c61;
+  --danger-color: #d45d79;
 }
 
 * {

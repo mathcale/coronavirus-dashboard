@@ -34,7 +34,7 @@ const IndexPage = () => {
     <>
       {summary ? (
         <Container>
-          <h1>Summary</h1>
+          <h1>World Summary</h1>
 
           <CardContainer>
             <Card default title="Confirmed" count={summary.confirmed.value} />

@@ -5,7 +5,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
-import { faChartLine, faGlobeAmericas, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine, faGlobeAmericas, faBandAid } from '@fortawesome/free-solid-svg-icons';
 
 import { Sidebar, SidebarBrand, SidebarLink } from '../components';
 import { loadFonts } from '../utils';
@@ -32,9 +32,9 @@ const CustomApp = ({ Component, pageProps }) => {
       </Head>
 
       <Sidebar>
-        <SidebarLink title="Summary" icon={faChartLine} href="/" />
-        {/* <SidebarLink title="Countries" icon={faGlobeAmericas} href="/countries" />
-        <SidebarLink title="About the Virus" icon={faInfoCircle} href="/about" /> */}
+        <SidebarLink title="World Summary" icon={faChartLine} href="/" />
+        <SidebarLink title="Filter by Country" icon={faGlobeAmericas} href="/countries" />
+        {/* <SidebarLink title="Be Safe!" icon={faBandAid} href="/safe" /> */}
       </Sidebar>
 
       <main className="main">
