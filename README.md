@@ -4,11 +4,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Dashboard built with Next/React to help track COVID-19 around the world. Created with ❤️ and 😷 by [myself](https://matheus.me) for the world!
-
-## Contributing
-
-If you want to help, please check out the issues page for ideas or open a pull request with your changes.
+Dashboard built with Next/React to help track COVID-19 around the world. Created with ❤️ and 😷 by [myself](https://matheus.me) for the world!.
 
 ## Running
 
