@@ -22,7 +22,8 @@ const CustomApp = ({ Component, pageProps }) => {
   return (
     <div className="app-wrapper">
       <Head>
-        <title>CODVID-19 Dashboard</title>
+        <title>COVID-19 Dashboard</title>
+        <link rel="shortcut icon" href="/img/virus.png" />
 
         <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
         <meta name="author" content="Matheus Calegaro <hello@matheus.me>" />
