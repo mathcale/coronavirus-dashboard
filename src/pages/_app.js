@@ -38,7 +38,7 @@ const CustomApp = ({ Component, pageProps }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
         <meta name="author" content="Matheus Calegaro <hello@matheus.me>" />
         <meta name="description" content="Follow COVID-19 infection and recovery numbers around the world" />
-        <meta name="keywords" content="coronavirus,covid-19,covid19,dashboard,data,analytics" />
+        <meta name="keywords" content="coronavirus,covid-19,covid19,dashboard,data,analytics,brasil,mundo,world,virus" />
 
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`} />
 

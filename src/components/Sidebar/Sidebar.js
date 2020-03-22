@@ -1,16 +1,30 @@
+import { createRef } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
 
 const Ul = styled.ul`
+  position: relative;
   margin-top: 100px;
   margin-left: 20px;
   list-style: none;
+  transition: all 300ms ease-in-out;
 
   @media screen and (max-width: 1130px) {
+    display: none;
     margin-top: 20px;
     text-align: center;
+  }
+
+  &.show {
+    display: block;
+
+    li {
+      display: block !important;
+      margin-bottom: 10px;
+    }
   }
 
   li {
@@ -89,15 +103,48 @@ export const SidebarBrand = props => (
   </SidebarBrandDiv>
 );
 
-export const Sidebar = props => (
-  <div className="sidebar">
-    <SidebarBrand />
+const SidebarMenuWrapper = styled.div`
+  display: none;
+  text-align: center;
 
-    <Ul>
-      {props.children}
-    </Ul>
-  </div>
-);
+  a.menu-toggle {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--white);
+    transition: color 300ms ease;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  @media screen and (max-width: 1130px) {
+    display: block;
+  }
+`;
+
+export const Sidebar = props => {
+  const menuRef = createRef();
+
+  const toggleMenu = e => {
+    e.preventDefault();
+    menuRef.current.classList.toggle('show');
+  };
+
+  return (
+    <div className="sidebar">
+      <SidebarBrand />
+
+      <SidebarMenuWrapper>
+        <a href="#" className="menu-toggle" onClick={toggleMenu}><FontAwesomeIcon icon={faBars} /> Menu</a>
+      </SidebarMenuWrapper>
+
+      <Ul ref={menuRef}>
+        {props.children}
+      </Ul>
+    </div>
+  );
+};
 
 export const SidebarLink = props => (
   <li>
