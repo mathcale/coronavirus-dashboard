@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 
@@ -10,13 +10,19 @@ import { faChartLine, faGlobeAmericas, faBandAid } from '@fortawesome/free-solid
 
 import { Sidebar, SidebarBrand, SidebarLink } from '../components';
 import { loadFonts } from '../utils';
+import { getMessage } from '../lang';
 
 import * as gtag from '../utils/gtag';
 
 const CustomApp = ({ Component, pageProps }) => {
+  const [language, setLanguage] = useState('en-US');
+
   useEffect(() => {
     loadFonts();
     Router.events.on('routeChangeComplete', url => gtag.pageview(url));
+
+    if (typeof window !== 'undefined')
+      setLanguage(navigator.language);
 
     return function() {
       document.documentElement.classList.remove('roboto', 'montserrat');
@@ -50,13 +56,13 @@ const CustomApp = ({ Component, pageProps }) => {
       </Head>
 
       <Sidebar>
-        <SidebarLink title="World Summary" icon={faChartLine} href="/" />
-        <SidebarLink title="Filter by Country" icon={faGlobeAmericas} href="/countries" />
-        <SidebarLink title="Stay Safe!" icon={faBandAid} href="/safety" />
+        <SidebarLink title={getMessage('SIDEBAR_LINK_ONE', language)} icon={faChartLine} href="/" />
+        <SidebarLink title={getMessage('SIDEBAR_LINK_TWO', language)} icon={faGlobeAmericas} href="/countries" />
+        <SidebarLink title={getMessage('SIDEBAR_LINK_THREE', language)} icon={faBandAid} href="/safety" />
       </Sidebar>
 
       <main className="main">
-        <Component {...pageProps} />
+        <Component {...pageProps} lang={language} />
       </main>
     </div>
   );

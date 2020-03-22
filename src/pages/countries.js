@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 
 import { Container, CardContainer, CountrySummaryContainer, Card, Form, Alert } from '../components';
 import { api, countries } from '../utils';
+import { getMessage } from '../lang';
 
-const CountriesPage = () => {
+const CountriesPage = props => {
   const [countryName, setCountryName] = useState('');
   const [countryCode, setCountryCode] = useState('');
   const [countrySummary, setCountrySummary] = useState(null);
@@ -19,7 +20,7 @@ const CountriesPage = () => {
     e.preventDefault();
 
     if (countryCode === '') {
-      alert('You must select a country!');
+      alert(getMessage('ERROR_REQUIRED_COUNTRY', props.lang));
       return false;
     }
 
@@ -45,15 +46,15 @@ const CountriesPage = () => {
 
   return (
     <Container>
-      <h1>Country Statistics</h1>
+      <h1>{getMessage('COUNTRIES_PAGE_TITLE', props.lang)}</h1>
 
       <CardContainer size="1">
         <Card content>
           <Form>
             <div className="form-control">
-              <label>Select a Country:</label>
+              <label>{getMessage('SELECT_COUNTRY', props.lang)}</label>
               <select defaultValue="XX" onChange={e => setCountryCode(e.target.value)}>
-                <option value="XX" disabled>Select one</option>
+                <option value="XX" disabled>{getMessage('SELECT_ONE', props.lang)}</option>
 
                 {Object.keys(countries).map((countryName, i) => (
                   <option key={i} value={countries[countryName]}>{countryName}</option>
@@ -61,7 +62,7 @@ const CountriesPage = () => {
               </select>
             </div>
 
-            <button type="button" onClick={fetchCountryDetails}>Search</button>
+            <button type="button" onClick={fetchCountryDetails}>{getMessage('SEARCH_BUTTON_TITLE', props.lang)}</button>
           </Form>
         </Card>
       </CardContainer>
@@ -73,12 +74,12 @@ const CountriesPage = () => {
       ) : (
         countrySummary && (
           <CountrySummaryContainer>
-            <h2>Search result for <span>{countryName}:</span></h2>
+            <h2 dangerouslySetInnerHTML={{__html: getMessage('SEARCH_RESULT_TITLE', props.lang, countryName)}} />
 
             <CardContainer size="3">
-              <Card default title="Confirmed" count={countrySummary.confirmed.value} />
-              <Card danger title="Deaths" count={countrySummary.deaths.value} />
-              <Card default title="Recovered" count={countrySummary.recovered.value} />
+              <Card default title={getMessage('CONFIRMED_CARD_TITLE', props.lang)} count={countrySummary.confirmed.value} />
+              <Card danger title={getMessage('DEATHS_CARD_TITLE', props.lang)} count={countrySummary.deaths.value} />
+              <Card default title={getMessage('RECOVERED_CARD_TITLE', props.lang)} count={countrySummary.recovered.value} />
             </CardContainer>
           </CountrySummaryContainer>
         )

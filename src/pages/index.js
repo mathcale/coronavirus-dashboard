@@ -3,13 +3,14 @@ import dynamic from 'next/dynamic'
 
 import { Container, CardContainer, Card } from '../components';
 import { api, buildAreaChartSeries } from '../utils';
+import { getMessage } from '../lang';
 
 const Chart = dynamic(
   () => import('../components/Chart/Chart'),
   { ssr: false },
 );
 
-const IndexPage = () => {
+const IndexPage = props => {
   const [summary, setSummary] = useState(null);
   const [dailySummarySeries, setDailySummarySeries] = useState([]);
 
@@ -34,12 +35,12 @@ const IndexPage = () => {
     <>
       {summary ? (
         <Container>
-          <h1>World Summary</h1>
+          <h1>{getMessage('INDEX_PAGE_TITLE', props.lang)}</h1>
 
           <CardContainer size="3">
-            <Card default title="Confirmed" count={summary.confirmed.value} />
-            <Card danger title="Deaths" count={summary.deaths.value} />
-            <Card default title="Recovered" count={summary.recovered.value} />
+            <Card default title={getMessage('CONFIRMED_CARD_TITLE', props.lang)} count={summary.confirmed.value} />
+            <Card danger title={getMessage('DEATHS_CARD_TITLE', props.lang)} count={summary.deaths.value} />
+            <Card default title={getMessage('RECOVERED_CARD_TITLE', props.lang)} count={summary.recovered.value} />
           </CardContainer>
 
           <CardContainer size="1">
@@ -69,7 +70,7 @@ const IndexPage = () => {
           </CardContainer>
         </Container>
       ) : (
-        <p>Loading</p>
+        <p>{getMessage('LOADING', props.lang)}</p>
       )}
     </>
   );
