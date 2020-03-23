@@ -15,7 +15,7 @@ import { getMessage } from '../lang';
 import * as gtag from '../utils/gtag';
 
 const CustomApp = ({ Component, pageProps }) => {
-  const [language, setLanguage] = useState('en-US');
+  const [language, setLanguage] = useState('pt-BR');
 
   useEffect(() => {
     loadFonts();
@@ -55,7 +55,7 @@ const CustomApp = ({ Component, pageProps }) => {
         }} />
       </Head>
 
-      <Sidebar>
+      <Sidebar lang={language}>
         <SidebarLink title={getMessage('SIDEBAR_LINK_ONE', language)} icon={faChartLine} href="/" />
         <SidebarLink title={getMessage('SIDEBAR_LINK_TWO', language)} icon={faGlobeAmericas} href="/countries" />
         <SidebarLink title={getMessage('SIDEBAR_LINK_THREE', language)} icon={faBandAid} href="/safety" />

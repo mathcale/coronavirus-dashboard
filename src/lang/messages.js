@@ -16,6 +16,14 @@ export const messages = {
     'pt-BR': 'Recuperados',
     'en-US': 'Recovered',
   },
+  'CREATED_BY': {
+    'pt-BR': 'Criado com ❤️ e 😷 por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a> para o mundo!',
+    'en-US': 'Created with ❤️ and 😷 by <a href="https://matheus.me" target="_blank">Matheus Calegaro</a> for the world!',
+  },
+  'SOURCE_CODE': {
+    'pt-BR': 'Código-Fonte',
+    'en-US': 'Source Code',
+  },
 
   // Navbar
   'SIDEBAR_LINK_ONE': {

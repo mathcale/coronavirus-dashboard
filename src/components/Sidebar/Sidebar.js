@@ -1,9 +1,11 @@
-import { createRef } from 'react';
+import { createRef, forwardRef } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
+import { getMessage } from '../../lang';
 
 const Ul = styled.ul`
   position: relative;
@@ -103,6 +105,66 @@ export const SidebarBrand = props => (
   </SidebarBrandDiv>
 );
 
+const SidebarFooterWrapper = styled.div`
+  position: fixed;
+  bottom: 50px;
+  width: 300px;
+  padding-right: 60px;
+  text-align: center;
+
+  a {
+    transition: font-weight 300ms ease-in-out;
+  }
+
+  a:hover {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 14px;
+    color: var(--white);
+
+    a {
+      color: var(--accent-color);
+    }
+  }
+
+  p:last-child {
+    margin-top: 10px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &.show {
+    display: block;
+  }
+
+  @media screen and (max-width: 1130px) {
+    display: none;
+    position: initial;
+    width: 100%;
+    padding-right: initial;
+    padding-right: 0px;
+  }
+`;
+
+const SidebarFooter = forwardRef((props, ref) => (
+  <SidebarFooterWrapper ref={ref}>
+    <p dangerouslySetInnerHTML={{ __html: getMessage('CREATED_BY', props.lang) }} />
+
+    <p>
+      <a
+        href="https://github.com/mathcale/coronavirus-dashboard"
+        target="_blank"
+      >
+        <FontAwesomeIcon icon={faGithub} /> {getMessage('SOURCE_CODE', props.lang)}
+      </a>
+    </p>
+  </SidebarFooterWrapper>
+));
+
 const SidebarMenuWrapper = styled.div`
   display: none;
   text-align: center;
@@ -125,10 +187,12 @@ const SidebarMenuWrapper = styled.div`
 
 export const Sidebar = props => {
   const menuRef = createRef();
+  const footerRef = createRef();
 
   const toggleMenu = e => {
     e.preventDefault();
     menuRef.current.classList.toggle('show');
+    footerRef.current.classList.toggle('show');
   };
 
   return (
@@ -142,6 +206,8 @@ export const Sidebar = props => {
       <Ul ref={menuRef}>
         {props.children}
       </Ul>
+
+      <SidebarFooter lang={props.lang || 'pt-BR'} ref={footerRef} />
     </div>
   );
 };
