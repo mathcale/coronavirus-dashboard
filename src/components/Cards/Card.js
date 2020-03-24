@@ -16,12 +16,18 @@ const CardWrapper = styled.div`
   .count {
     font-size: 21px;
     font-style: italic;
-    color: #ccc;
+    color: ${
+      props => props.theme === 'info' ? '#008FFB' : (
+        props.theme === 'warning' ? '#FEB019' : (
+          props.theme === 'danger' ? '#FF4560' : '#cccccc'
+        )
+      )
+    }
   }
 `;
 
 export const Card = props => (
-  <CardWrapper hasChart={props.chart}>
+  <CardWrapper theme={props.theme}>
     {props.content || props.chart ? props.children : (
       <>
         <h3>{props.title}</h3>

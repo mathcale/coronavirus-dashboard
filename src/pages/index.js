@@ -4,6 +4,8 @@ import dynamic from 'next/dynamic'
 import { Container, CardContainer, Card } from '../components';
 import { api, buildAreaChartSeries } from '../utils';
 import { getMessage } from '../lang';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const Chart = dynamic(
   () => import('../components/Chart/Chart'),
@@ -21,7 +23,7 @@ const IndexPage = props => {
         setSummary(summary.data);
 
         const dailySummary = await api.get('/daily');
-        const summarySeries = buildAreaChartSeries(dailySummary.data);
+        const summarySeries = buildAreaChartSeries(dailySummary.data, props.lang);
         setDailySummarySeries(summarySeries);
       } catch (err) {
         console.log(err.message);
@@ -38,9 +40,9 @@ const IndexPage = props => {
           <h1>{getMessage('INDEX_PAGE_TITLE', props.lang)}</h1>
 
           <CardContainer size="3">
-            <Card default title={getMessage('CONFIRMED_CARD_TITLE', props.lang)} count={summary.confirmed.value} />
-            <Card danger title={getMessage('DEATHS_CARD_TITLE', props.lang)} count={summary.deaths.value} />
-            <Card default title={getMessage('RECOVERED_CARD_TITLE', props.lang)} count={summary.recovered.value} />
+            <Card theme="warning" title={getMessage('CONFIRMED_CARD_TITLE', props.lang)} count={summary.confirmed.value} />
+            <Card theme="danger" title={getMessage('DEATHS_CARD_TITLE', props.lang)} count={summary.deaths.value} />
+            <Card theme="info" title={getMessage('RECOVERED_CARD_TITLE', props.lang)} count={summary.recovered.value} />
           </CardContainer>
 
           <CardContainer size="1">
@@ -49,6 +51,7 @@ const IndexPage = props => {
                 options={{
                   xaxis: { type: 'datetime' },
                   theme: { mode: 'dark', palette: 'palette1' },
+                  colors: ['#008FFB', '#FF4560', '#00E396'],
                   chart: {
                     background: '#1c3146',
                     toolbar: { show: false },
@@ -64,13 +67,17 @@ const IndexPage = props => {
                 }}
                 series={dailySummarySeries}
                 type="area"
-                height="500"
+                height="450"
               />
             </Card>
           </CardContainer>
         </Container>
       ) : (
-        <p>{getMessage('LOADING', props.lang)}</p>
+        <Container>
+          <Card content>
+            <p><FontAwesomeIcon icon={faSpinner} spin /> {getMessage('LOADING', props.lang)}</p>
+          </Card>
+        </Container>
       )}
     </>
   );

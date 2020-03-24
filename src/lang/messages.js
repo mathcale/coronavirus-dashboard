@@ -24,6 +24,18 @@ export const messages = {
     'pt-BR': 'Código-Fonte',
     'en-US': 'Source Code',
   },
+  'TOTAL_CONFIRMED': {
+    'pt-BR': 'Total Confirmados',
+    'en-US': 'Total Confirmed',
+  },
+  'TOTAL_DEATHS': {
+    'pt-BR': 'Total Mortes',
+    'en-US': 'Total Confirmed',
+  },
+  'TOTAL_RECOVERED': {
+    'pt-BR': 'Total Recuperados',
+    'en-US': 'Total Recovered',
+  },
 
   // Navbar
   'SIDEBAR_LINK_ONE': {
