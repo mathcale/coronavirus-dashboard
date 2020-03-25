@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
-const CardWrapper = styled.div`
+export const CardWrapper = styled.div`
   position: relative;
   height: fit-content;
-  padding: 20px;
+  padding: ${props => props.news ? '0px' : '20px'};
   background-color: var(--card-color);
   border-radius: 15px;
   color: var(--white);
+
+  ${props => props.news && `
+    width: 300px;
+    margin: 0 20px 20px 0;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  `}
 
   h3 {
     font-size: 32px;

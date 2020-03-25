@@ -32,6 +32,7 @@ body,
 .app-wrapper {
   display: grid;
   grid-template-columns: 300px 1fr;
+  grid-template-rows: 100%;
 }
 
 @media screen and (max-width: 1130px) {

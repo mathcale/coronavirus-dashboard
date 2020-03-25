@@ -51,6 +51,10 @@ export const messages = {
     'en-US': 'Filter by Country',
   },
   'SIDEBAR_LINK_THREE': {
+    'pt-BR': 'Últimas Notícias',
+    'en-US': 'Latest News',
+  },
+  'SIDEBAR_LINK_FOUR': {
     'pt-BR': 'Se Proteja!',
     'en-US': 'Be Safe!',
   },
@@ -119,5 +123,11 @@ export const messages = {
   'SAFETY_SECOND_PARAGRAPH': {
     'pt-BR': 'Para mais informações, acesse a <a href="https://coronavirus.saude.gov.br/" target="_blank">página oficial do Ministério da Saúde sobre o COVID-19</a>.',
     'en-US': 'For more info, take a look at the <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">official World Health Organization\'s COVID-19 page</a>.'
+  },
+
+  // News Page
+  'NEWS_PAGE_TITLE': {
+    'pt-BR': 'Últimas Notícias',
+    'en-US': 'Latest News from Brazil',
   },
 };
