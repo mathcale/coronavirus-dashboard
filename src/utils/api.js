@@ -7,3 +7,11 @@ export const api = axios.create({
     'Accept': 'application/json',
   }
 });
+
+export const apiAlternate = axios.create({
+  baseURL: 'http://coronavirus-tracker-api.herokuapp.com/v2',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  }
+})

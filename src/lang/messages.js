@@ -36,6 +36,10 @@ export const messages = {
     'pt-BR': 'Total Recuperados',
     'en-US': 'Total Recovered',
   },
+  'NOTICE_NO_RECOVERED': {
+    'pt-BR': '*Nota: o número de recuperados não está mais sendo fornecido pela John Hopkins University.',
+    'en-US': '*Note: JHU is no longer providing the amount of recoveries.'
+  },
 
   // Navbar
   'SIDEBAR_LINK_ONE': {
@@ -75,8 +79,8 @@ export const messages = {
     'en-US': 'Search',
   },
   'SEARCH_RESULT_TITLE': {
-    'pt-BR': 'Resultado da busca para <span>#1#:</span>',
-    'en-US': 'Search result for <span>#1#:</span>',
+    'pt-BR': 'Resultado da busca para <span>#1# #2#:</span>',
+    'en-US': 'Search result for <span>#1# #2#:</span>',
   },
   'ERROR_REQUIRED_COUNTRY': {
     'pt-BR': 'Você deve selecionar um país!',

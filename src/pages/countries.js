@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
+import flag from 'country-code-emoji';
 
-import { Container, CardContainer, CountrySummaryContainer, Card, Form, Alert } from '../components';
-import { api, countries } from '../utils';
+import { Container, CardContainer, CountrySummaryContainer, Card, Form, Alert, Stats } from '../components';
+import { apiAlternate, countries, buildCountryAreaChartSeries } from '../utils';
 import { getMessage } from '../lang';
 
 const CountriesPage = props => {
   const [countryName, setCountryName] = useState('');
   const [countryCode, setCountryCode] = useState('');
   const [countrySummary, setCountrySummary] = useState(null);
+  const [countrySeries, setCountrySeries] = useState([])
   const [error, setError] = useState(null);
 
-  useEffect(() => {}, [countrySummary, error]);
+  useEffect(() => {}, [countrySummary]);
 
   function getCountryNameByCode(countryCode) {
     return Object.keys(countries).filter(country => countries[country] === countryCode)[0];
@@ -29,18 +31,20 @@ const CountriesPage = props => {
     setError(null);
 
     try {
-      const summary = await api.get(`/countries/${countryCode}`);
+      const summary = await apiAlternate.get(`/locations?country_code=${countryCode}&timelines=1`);
 
       setCountrySummary(summary.data);
       setCountryName(getCountryNameByCode(countryCode));
+      setCountrySeries(buildCountryAreaChartSeries(summary.data.locations[0].timelines, props.lang))
     } catch (err) {
-      console.error(`API responded with status code ${err.response.status} and message: ${err.response.data.error.message}`);
+      // console.error(`API responded with status code ${err.response.status} and message: ${err.response.data.error.message}`);
 
-      if (err.response.status >= 500) {
-        setError('Unexpected error from data source! Please try again later!');
-      } else {
-        setError(err.response.data.error.message);
-      }
+      // if (err.response.status >= 500) {
+        // setError('Unexpected error from data source! Please try again later!');
+      // } else {
+        // setError(err.response.data.error.message);
+        setError(err.message);
+      // }
     }
   }
 
@@ -74,13 +78,15 @@ const CountriesPage = props => {
       ) : (
         countrySummary && (
           <CountrySummaryContainer>
-            <h2 dangerouslySetInnerHTML={{__html: getMessage('SEARCH_RESULT_TITLE', props.lang, countryName)}} />
+            <h2 dangerouslySetInnerHTML={{__html: getMessage('SEARCH_RESULT_TITLE', props.lang, flag(countryCode), countryName)}} />
 
-            <CardContainer size="3">
-              <Card default title={getMessage('CONFIRMED_CARD_TITLE', props.lang)} count={countrySummary.confirmed.value} />
-              <Card danger title={getMessage('DEATHS_CARD_TITLE', props.lang)} count={countrySummary.deaths.value} />
-              <Card default title={getMessage('RECOVERED_CARD_TITLE', props.lang)} count={countrySummary.recovered.value} />
-            </CardContainer>
+            <Stats
+              confirmed={countrySummary.latest.confirmed}
+              deaths={countrySummary.latest.deaths}
+              recovered={countrySummary.latest.recovered}
+              series={countrySeries}
+              lang={props.lang}
+            />
           </CountrySummaryContainer>
         )
       )}

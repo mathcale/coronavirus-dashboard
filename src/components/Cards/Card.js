@@ -13,6 +13,10 @@ const CardWrapper = styled.div`
     margin-bottom: 10px;
   }
 
+  legend {
+    font-size: 12px;
+  }
+
   .count {
     font-size: 21px;
     font-style: italic;
@@ -27,11 +31,11 @@ const CardWrapper = styled.div`
 `;
 
 export const Card = props => (
-  <CardWrapper theme={props.theme}>
+  <CardWrapper theme={props.theme} hasChart={props.chart}>
     {props.content || props.chart ? props.children : (
       <>
         <h3>{props.title}</h3>
-        <p className="count">{props.count || '0'}</p>
+        <p className="count">{Number(props.count).toLocaleString() || '0'}</p>
       </>
     )}
   </CardWrapper>

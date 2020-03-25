@@ -5,7 +5,15 @@ export const getMessage = (key, lang, ...replaceValues) => {
     return '';
 
   if (replaceValues.length > 0) {
-    return replaceValues.map((v, i) => messages[key][lang].replace(`#${i+1}#`, v));
+    const vals = {};
+
+    replaceValues.forEach((v, i) => {
+      vals[`#${i+1}#`] = v;
+    });
+
+    const search = new RegExp(Object.keys(vals).join('|'), 'gi');
+
+    return messages[key][lang].replace(search, matched => vals[matched]);
   } else {
     return messages[key][lang];
   }

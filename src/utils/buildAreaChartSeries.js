@@ -11,14 +11,14 @@ export const buildAreaChartSeries = (data, lang) => {
     y: report.deaths.total,
   }));
 
-  const totalRecoveredData = data.map(report => ({
-    x: report.reportDate,
-    y: report.recovered.total,
-  }));
+  // const totalRecoveredData = data.map(report => ({
+  //   x: report.reportDate,
+  //   y: report.recovered.total,
+  // }));
 
   return [
     { name: getMessage('TOTAL_CONFIRMED', lang), data: totalConfirmedData },
     { name: getMessage('TOTAL_DEATHS', lang), data: totalDeathsData },
-    { name: getMessage('TOTAL_RECOVERED', lang), data: totalRecoveredData },
+    // { name: getMessage('TOTAL_RECOVERED', lang), data: totalRecoveredData },
   ];
 };

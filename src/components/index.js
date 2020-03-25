@@ -7,3 +7,4 @@ export * from './Containers/CountrySummaryContainer';
 export * from './Cards/Card';
 export * from './Form/Form';
 export * from './Alert/Alert';
+export * from './Stats/Stats';
