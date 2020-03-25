@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import flag from 'country-code-emoji';
+import axios from 'axios';
 
 import { Container, CardContainer, CountrySummaryContainer, Card, Form, Alert, Stats } from '../components';
 import { apiAlternate, countries, buildCountryAreaChartSeries } from '../utils';
@@ -31,7 +32,8 @@ const CountriesPage = props => {
     setError(null);
 
     try {
-      const summary = await apiAlternate.get(`/locations?country_code=${countryCode}&timelines=1`);
+      // const summary = await axios.get(`/locations?country_code=${countryCode}&timelines=1`);
+      const summary = await axios.get(`/api/country?code=${countryCode}`);
 
       setCountrySummary(summary.data);
       setCountryName(getCountryNameByCode(countryCode));
