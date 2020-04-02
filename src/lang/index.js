@@ -4,6 +4,9 @@ export const getMessage = (key, lang, ...replaceValues) => {
   if (!messages[key][lang])
     return '';
 
+  if (lang !== 'pt-BR' && lang !== 'en-US')
+    lang = 'en-US';
+
   if (replaceValues.length > 0) {
     const vals = {};
 
