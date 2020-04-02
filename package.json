@@ -8,9 +8,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "now dev",
+    "develop": "now dev",
     "build": "next build",
-    "next:start": "next start",
+    "start": "next start",
     "deploy": "now"
   },
   "dependencies": {
