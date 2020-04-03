@@ -10,3 +10,4 @@ export * from './Cards/NewsCard';
 export * from './Form/Form';
 export * from './Alert/Alert';
 export * from './Stats/Stats';
+export * from './Loading/Loading';

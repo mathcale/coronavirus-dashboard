@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { Container, CardContainer, Card, Stats } from '../components';
+import { Container, CardContainer, Card, Stats, Loading } from '../components';
 import { api, buildAreaChartSeries } from '../utils';
 import { getMessage } from '../lang';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const IndexPage = props => {
   const [summary, setSummary] = useState(null);
@@ -28,27 +26,21 @@ const IndexPage = props => {
   }, []);
 
   return (
-    <>
-      {summary ? (
-        <Container>
-          <h1>{getMessage('INDEX_PAGE_TITLE', props.lang)}</h1>
+    <Container>
+      <h1>{getMessage('INDEX_PAGE_TITLE', props.lang)}</h1>
 
-          <Stats
-            confirmed={summary.confirmed.value}
-            deaths={summary.deaths.value}
-            recovered={summary.recovered.value}
-            series={dailySummarySeries}
-            lang={props.lang}
-          />
-        </Container>
+      {summary ? (
+        <Stats
+          confirmed={summary.confirmed.value}
+          deaths={summary.deaths.value}
+          recovered={summary.recovered.value}
+          series={dailySummarySeries}
+          lang={props.lang}
+        />
       ) : (
-        <Container>
-          <Card content>
-            <p><FontAwesomeIcon icon={faSpinner} spin /> {getMessage('LOADING', props.lang)}</p>
-          </Card>
-        </Container>
+        <Loading lang={props.lang} />
       )}
-    </>
+    </Container>
   );
 };
 

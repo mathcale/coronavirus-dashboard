@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import flag from 'country-code-emoji';
 import axios from 'axios';
 
-import { Container, CardContainer, CountrySummaryContainer, Card, Form, Alert, Stats } from '../components';
+import { Container, CardContainer, CountrySummaryContainer, Card, Form, Alert, Stats, Loading } from '../components';
 import { apiAlternate, countries, buildCountryAreaChartSeries } from '../utils';
 import { getMessage } from '../lang';
 
@@ -12,6 +12,7 @@ const CountriesPage = props => {
   const [countrySummary, setCountrySummary] = useState(null);
   const [countrySeries, setCountrySeries] = useState([])
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {}, [countrySummary]);
 
@@ -27,26 +28,21 @@ const CountriesPage = props => {
       return false;
     }
 
+    setIsLoading(true);
     setCountrySummary(null);
     setCountryName('');
     setError(null);
 
     try {
-      // const summary = await axios.get(`/locations?country_code=${countryCode}&timelines=1`);
       const summary = await axios.get(`/api/country?code=${countryCode}`);
 
       setCountrySummary(summary.data);
       setCountryName(getCountryNameByCode(countryCode));
-      setCountrySeries(buildCountryAreaChartSeries(summary.data.locations[0].timelines, props.lang))
+      setCountrySeries(buildCountryAreaChartSeries(summary.data.locations[0].timelines, props.lang));
+      setIsLoading(false);
     } catch (err) {
-      // console.error(`API responded with status code ${err.response.status} and message: ${err.response.data.error.message}`);
-
-      // if (err.response.status >= 500) {
-        // setError('Unexpected error from data source! Please try again later!');
-      // } else {
-        // setError(err.response.data.error.message);
-        setError(err.message);
-      // }
+      setError(err.message);
+      setIsLoading(false);
     }
   }
 
@@ -72,6 +68,8 @@ const CountriesPage = props => {
           </Form>
         </Card>
       </CardContainer>
+
+      {isLoading && <Loading lang={props.lang} />}
 
       {error ? (
         <Alert danger>
