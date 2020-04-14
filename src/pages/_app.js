@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 
+import { Layout } from '../components';
 import { loadFonts } from '../utils';
 import * as gtag from '../utils/gtag';
+
+import 'flexboxgrid/dist/flexboxgrid.min.css';
 
 const CustomApp = ({ Component, pageProps }) => {
   const [language, setLanguage] = useState('pt-BR');
@@ -16,12 +19,12 @@ const CustomApp = ({ Component, pageProps }) => {
       setLanguage(navigator.language);
 
     return function() {
-      document.documentElement.classList.remove('with-roboto', 'with-montserrat');
+      document.documentElement.classList.remove('with-roboto', 'with-montserrat', 'with-icons');
     };
   }, []);
 
   return (
-    <div className="app-wrapper">
+    <>
       <Head>
         <title>COVID-19 Dashboard</title>
         <link rel="shortcut icon" href="/img/virus.png" />
@@ -46,8 +49,10 @@ const CustomApp = ({ Component, pageProps }) => {
         }} />
       </Head>
 
-      <Component {...pageProps} lang={language} />
-    </div>
+      <Layout>
+        <Component {...pageProps} lang={language} />
+      </Layout>
+    </>
   );
 };
 
