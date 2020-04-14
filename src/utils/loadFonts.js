@@ -11,10 +11,10 @@ export const loadFonts = () => {
   const montserrat = new FontFaceObserver('Montserrat');
 
   roboto.load().then(() => {
-    document.documentElement.classList.add('roboto');
+    document.documentElement.classList.add('with-roboto');
   });
 
   montserrat.load().then(() => {
-    document.documentElement.classList.add('montserrat');
+    document.documentElement.classList.add('with-montserrat');
   });
 }

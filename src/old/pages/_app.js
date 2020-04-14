@@ -2,7 +2,16 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
+
+import { faChartLine, faGlobeAmericas, faBandAid, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+
+import { Sidebar, SidebarBrand, SidebarLink } from '../components';
 import { loadFonts } from '../utils';
+import { getMessage } from '../lang';
+
 import * as gtag from '../utils/gtag';
 
 const CustomApp = ({ Component, pageProps }) => {
@@ -16,7 +25,7 @@ const CustomApp = ({ Component, pageProps }) => {
       setLanguage(navigator.language);
 
     return function() {
-      document.documentElement.classList.remove('with-roboto', 'with-montserrat');
+      document.documentElement.classList.remove('roboto', 'montserrat');
     };
   }, []);
 
@@ -46,7 +55,16 @@ const CustomApp = ({ Component, pageProps }) => {
         }} />
       </Head>
 
-      <Component {...pageProps} lang={language} />
+      <Sidebar lang={language}>
+        <SidebarLink title={getMessage('SIDEBAR_LINK_ONE', language)} icon={faChartLine} href="/" />
+        <SidebarLink title={getMessage('SIDEBAR_LINK_TWO', language)} icon={faGlobeAmericas} href="/countries" />
+        <SidebarLink title={getMessage('SIDEBAR_LINK_THREE', language)} icon={faNewspaper} href="/news" />
+        <SidebarLink title={getMessage('SIDEBAR_LINK_FOUR', language)} icon={faBandAid} href="/safety" />
+      </Sidebar>
+
+      <main className="main">
+        <Component {...pageProps} lang={language} />
+      </main>
     </div>
   );
 };

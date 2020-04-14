@@ -1,6 +1,6 @@
 {
   "name": "coronavirus-dashboard",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": {
     "name": "Matheus Calegaro",
     "email": "hello@matheus.me",
@@ -14,10 +14,6 @@
     "deploy": "now"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/free-brands-svg-icons": "^5.12.1",
-    "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@fortawesome/react-fontawesome": "^0.1.9",
     "apexcharts": "^3.16.1",
     "axios": "^0.19.2",
     "country-code-emoji": "^1.0.0",
