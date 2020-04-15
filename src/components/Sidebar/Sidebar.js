@@ -12,6 +12,11 @@ const StyledLi = styled.li`
   i {
     font-size: 24px;
     color: var(--sidebar-link-color);
+    transition: color 300ms ease-in-out;
+  }
+
+  &:hover i {
+    color: var(--sidebar-active-link-bg-color);
   }
 
   a {
@@ -21,6 +26,7 @@ const StyledLi = styled.li`
   &.active {
     align-items: center;
     flex-direction: column;
+    margin-left: 35px;
     padding: 20px;
     background-color: var(--sidebar-active-link-bg-color);
     border-radius: 15px;
@@ -48,7 +54,7 @@ const SidebarItem = ({ title, href, icon }) => (
 
 export const Sidebar = props => (
   <Card sidebar>
-    <img src="/img/virus.png" width="50%" alt="COVID-19 Dashboard" />
+    <img src="/img/virus.png" width="100%" alt="COVID-19 Dashboard" />
 
     <div className="sidebar-links">
       <ul style={{ listStyle: 'none' }}>

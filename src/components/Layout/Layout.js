@@ -3,7 +3,7 @@ import { Sidebar } from '../Sidebar/Sidebar';
 export const Layout = ({ children }) => (
   <div className="app-wrapper" style={{ height: '100vh', padding: 20 }}>
     <div className="row" style={{ height: '100%', marginRight: 0 }}>
-      <div className="col-md-1">
+      <div className="col-md-1" style={{ paddingLeft: '35px', paddingRight: '35px' }}>
         <Sidebar />
       </div>
 
