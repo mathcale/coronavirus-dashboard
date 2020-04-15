@@ -58,7 +58,7 @@ export const Sidebar = props => (
 
     <div className="sidebar-links">
       <ul style={{ listStyle: 'none' }}>
-        <SidebarItem title="Resumo" icon="globe-alt" href="/" />
+        <SidebarItem title="Mundo" icon="globe-alt" href="/" />
         <SidebarItem title="Brasil" icon="home" href="/brazil" />
         <SidebarItem title="Filtrar" icon="search" href="/countries" />
         <SidebarItem title="Notícias" icon="newspaper" href="/news" />
