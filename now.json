@@ -2,7 +2,8 @@
   "build": {
     "env": {
       "GA_TRACKING_ID": "@ga_tracking_id",
-      "COVID19_DASH_NOVEL_ENDPOINT": "@covid19_dash_novel_endpoint"
+      "COVID19_DASH_NOVEL_ENDPOINT": "@covid19_dash_novel_endpoint",
+      "COVID19_DASH_WORLD_MAP_ENDPOINT": "@covid19_dash_world_map_endpoint"
     }
   }
 }

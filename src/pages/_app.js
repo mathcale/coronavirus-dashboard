@@ -7,6 +7,7 @@ import { loadFonts } from '../utils';
 import * as gtag from '../utils/gtag';
 
 import 'flexboxgrid/dist/flexboxgrid.min.css';
+import 'jvectormap-next/jquery-jvectormap.css';
 
 const CustomApp = ({ Component, pageProps }) => {
   const [language, setLanguage] = useState('pt-BR');

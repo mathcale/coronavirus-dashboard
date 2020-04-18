@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   /* Card */
   --card-default-color: #ffffff;
   --card-stats-title-color: #687089;
+  --card-border-color: #f6f1f1;
 
   /* Sidebar */
   --sidebar-link-color: #a2a5b2;
@@ -29,5 +30,9 @@ body,
   height: 100vh;
   background-color: var(--background-color);
   font-family: 'Roboto', sans-serif;
+}
+
+.world-map .jvectormap-container {
+  border-radius: 10px;
 }
 `;

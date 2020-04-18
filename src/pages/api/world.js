@@ -20,10 +20,14 @@ export default async (req, res) => {
   const responseHistory = await fetch(`${endpoint}/v2/historical/all?lastdays=30`);
   const history = await responseHistory.json();
 
+  const responseCountries = await fetch(`${endpoint}/v2/countries?sort=cases`);
+  const countries = await responseCountries.json();
+
   const data = {
     today,
     yesterday,
     history,
+    countries,
   };
 
   res.status(200).json(JSON.stringify(data));
