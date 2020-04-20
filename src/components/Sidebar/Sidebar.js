@@ -32,6 +32,11 @@ const StyledLi = styled.li`
     border-radius: 15px;
     box-shadow: 0px 5px 20px rgba(252, 49, 46, 0.8);
 
+    @media (max-width: 1280px) {
+      margin-left: 0px;
+      padding: 10px;
+    }
+
     i, a {
       color: var(--sidebar-active-link-color);
     }
@@ -39,6 +44,10 @@ const StyledLi = styled.li`
     a {
       display: block;
       margin-top: 5px;
+
+      @media (max-width: 1280px) {
+        font-size: 14px;
+      }
     }
   }
 `;
@@ -52,21 +61,53 @@ const SidebarItem = ({ title, href, icon }) => (
   </PageAwareLink>
 );
 
-export const Sidebar = props => (
-  <Card sidebar>
-    <img src="/img/virus.png" width="100%" alt="COVID-19 Dashboard" />
+const SidebarLinks = styled.div`
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
 
-    <div className="sidebar-links">
+const SidebarMenuWrapper = styled.div`
+  @media (min-width: 1024px) {
+    display: block;
+  }
+
+  padding: 5px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+`;
+
+const SidebarMenu = () => (
+  <SidebarMenuWrapper>
+    <button type="button" onClick={() => null}>
+      <i className="cil-hamburger-menu" />
+    </button>
+  </SidebarMenuWrapper>
+);
+
+const SidebarBottom = styled.div`
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const Sidebar = () => (
+  <Card sidebar>
+    <img src="/img/virus.png" className="sidebar--logo" alt="COVID-19 Dashboard" />
+
+    <SidebarMenu />
+
+    <SidebarLinks>
       <ul style={{ listStyle: 'none' }}>
         <SidebarItem title="Mundo" icon="globe-alt" href="/" />
         <SidebarItem title="Brasil" icon="home" href="/brazil" />
         <SidebarItem title="Notícias" icon="newspaper" href="/news" />
         <SidebarItem title="Dicas" icon="healing" href="/safety" />
       </ul>
-    </div>
+    </SidebarLinks>
 
-    <div className="sidebar-bottom">
+    <SidebarBottom>
       <p>👋</p>
-    </div>
+    </SidebarBottom>
   </Card>
 );

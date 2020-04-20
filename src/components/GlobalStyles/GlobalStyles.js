@@ -50,6 +50,17 @@ body,
   font-family: 'Roboto', sans-serif;
 }
 
+.with-full-height {
+  height: 100%;
+}
+
+.sidebar {
+  @media (max-width: 1024px) {
+    height: fit-content !important;
+    margin-bottom: 20px;
+  }
+}
+
 .world-map .jvectormap-container {
   border-radius: 10px;
 }

@@ -5,7 +5,7 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: ${props=> props.sidebar ? 'center' : null};
   justify-content: ${props => props.sidebar ? 'space-between' : null};
-  width: 100%;
+  width: ${props => props.sidebar ? '80px' : '100%'};
   height: ${props => props.sidebar || props.fullHeight ? '100%' : 'fit-content'};
   margin-bottom: ${props => props.countrySummary ? '15px' : null};
   padding: ${props => !props.news && '20px'};
@@ -13,6 +13,14 @@ export const Card = styled.div`
   border: ${props => props.countrySummary ? '2px solid var(--card-border-color)' : null};
   border-radius: 25px;
   overflow-y: ${props => props.fullHeight && 'scroll'};
+
+  ${props => props.sidebar && `
+    @media (max-width: 1024px) {
+      flex-direction: row;
+      width: 100%;
+      height: 80px;
+    }
+  `}
 
   .col-md-7,
   .col-md-5 {
@@ -22,6 +30,18 @@ export const Card = styled.div`
     padding: 0;
   }
 
+  /* Sidebar styles */
+  .sidebar--logo {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    @media (max-width: 1024px) {
+      width: 32px;
+    }
+  }
+
+  /* Stats cards styles */
   .stats--title {
     margin-bottom: 10px;
     color: var(--card-stats-title-color);
@@ -33,6 +53,7 @@ export const Card = styled.div`
     color: var(--black);
   }
 
+  /* Countries summary styles */
   .country-summary--title,
   .country-summary--data {
     display: flex;
@@ -66,6 +87,7 @@ export const Card = styled.div`
     height: 100%;
   }
 
+  /* News styles */
   .news-card--image {
     display: flex;
     position: relative;
