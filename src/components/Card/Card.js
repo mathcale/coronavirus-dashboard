@@ -8,7 +8,7 @@ export const Card = styled.div`
   width: 100%;
   height: ${props => props.sidebar || props.fullHeight ? '100%' : 'fit-content'};
   margin-bottom: ${props => props.countrySummary ? '15px' : null};
-  padding: 20px;
+  padding: ${props => !props.news && '20px'};
   background-color: var(--card-default-color);
   border: ${props => props.countrySummary ? '2px solid var(--card-border-color)' : null};
   border-radius: 25px;
@@ -64,6 +64,62 @@ export const Card = styled.div`
 
   .world-summary {
     height: 100%;
+  }
+
+  .news-card--image {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background-color: #eee;
+    border-radius: 15px 15px 0 0;
+
+    img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 25px 25px 0 0;
+    }
+
+    p {
+      width: 100%;
+      align-self: center;
+      text-align: center;
+      font-size: 18px;
+      color: #aaa;
+    }
+  }
+
+  .news-card--content {
+    padding: 20px;
+
+    h3 {
+      margin-bottom: 10px;
+      color: var(--white);
+
+      a {
+        text-decoration: none;
+        color: var(--white);
+      }
+    }
+
+    p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--sidebar-link-color);
+
+      span {
+        font-weight: bold;
+        font-style: normal;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--sidebar-active-link-bg-color);
+    }
   }
 `;
 
