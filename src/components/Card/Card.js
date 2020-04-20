@@ -6,12 +6,13 @@ export const Card = styled.div`
   align-items: ${props=> props.sidebar ? 'center' : null};
   justify-content: ${props => props.sidebar ? 'space-between' : null};
   width: 100%;
-  height: ${props => props.sidebar ? '100%' : 'fit-content'};
+  height: ${props => props.sidebar || props.fullHeight ? '100%' : 'fit-content'};
   margin-bottom: ${props => props.countrySummary ? '15px' : null};
   padding: 20px;
   background-color: var(--card-default-color);
   border: ${props => props.countrySummary ? '2px solid var(--card-border-color)' : null};
   border-radius: 25px;
+  overflow-y: ${props => props.fullHeight && 'scroll'};
 
   .col-md-7,
   .col-md-5 {
@@ -59,6 +60,10 @@ export const Card = styled.div`
         margin-right: 5px;
       }
     }
+  }
+
+  .world-summary {
+    height: 100%;
   }
 `;
 
