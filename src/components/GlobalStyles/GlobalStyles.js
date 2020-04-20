@@ -53,4 +53,25 @@ body,
 .world-map .jvectormap-container {
   border-radius: 10px;
 }
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  h1 {
+    margin-top: 20px;
+    color: var(--sidebar-link-color);
+  }
+
+  img {
+    width: 500px;
+
+    @media (max-width: 1024px) {
+      width: 80%;
+    }
+  }
+}
 `;
