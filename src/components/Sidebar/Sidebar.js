@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 import { Card } from '../Card/Card';
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
@@ -77,7 +78,7 @@ const SidebarLinks = styled.div`
       width: 100%;
       margin-top: 195px;
       margin-left: -20px;
-      background-color: #fff;
+      background-color: var(--white);
       border-bottom: 1px solid var(--sidebar-link-color);
       z-index: 10;
 
@@ -95,8 +96,8 @@ const SidebarMenuButtonWrapper = styled.div`
     display: block;
   }
 
-  padding: 5px;
-  border: 1px solid var(--card-border-color);
+  padding: 5px 7px;
+  border: 1px solid var(--card-stats-title-color);
   border-radius: 4px;
 
   button {
@@ -120,12 +121,55 @@ const SidebarBottom = styled.div`
   }
 `;
 
+const SidebarBrandWrapper = styled.div`
+  a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: var(--black);
+  }
+
+  img.sidebar--brand {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-right: 0px;
+
+    @media (max-width: 1024px) {
+      width: 32px;
+      margin-right: 10px;
+    }
+  }
+
+  p {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+
+    span {
+      color: var(--brand-color);
+    }
+
+    @media (max-width: 1024px) {
+      display: block;
+    }
+  }
+`;
+
 export const Sidebar = () => {
   const sidebarLinksRef = useRef();
 
   return (
     <Card sidebar>
-      <img src="/img/virus.png" className="sidebar--logo" alt="COVID-19 Dashboard" />
+      <SidebarBrandWrapper>
+        <Link href="/">
+          <a>
+            <img src="/img/virus.png" className="sidebar--brand" alt="COVID-19 Dashboard" />
+            <p><span>COVID-19</span> Dashboard</p>
+          </a>
+        </Link>
+      </SidebarBrandWrapper>
 
       <SidebarMenu onClick={() => sidebarLinksRef.current.classList.toggle('active')} />
 

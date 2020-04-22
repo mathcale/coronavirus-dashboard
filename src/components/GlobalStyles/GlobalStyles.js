@@ -4,8 +4,9 @@ export const GlobalStyles = createGlobalStyle`
 :root {
   /* General */
   --background-color: #f2f4f5;
-  --white: '#ffffff';
-  --black: '#303139';
+  --white: #ffffff;
+  --black: #303139;
+  --brand-color: #e74d5f;
 
   /* Card */
   --card-default-color: #ffffff;
@@ -93,6 +94,9 @@ body,
 }
 
 .sidebar {
+  display: flex;
+  justify-content: center;
+
   @media (max-width: 1024px) {
     height: fit-content !important;
     margin-bottom: 20px;

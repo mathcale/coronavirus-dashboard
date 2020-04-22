@@ -50,17 +50,6 @@ export const Card = styled.div`
     padding: 0;
   }
 
-  /* Sidebar styles */
-  .sidebar--logo {
-    display: block;
-    position: relative;
-    width: 100%;
-
-    @media (max-width: 1024px) {
-      width: 32px;
-    }
-  }
-
   /* Stats cards styles */
   .stats--title {
     margin-bottom: 10px;
@@ -161,11 +150,11 @@ export const Card = styled.div`
 
     h3 {
       margin-bottom: 10px;
-      color: var(--white);
+      color: var(--black);
 
       a {
         text-decoration: none;
-        color: var(--white);
+        color: var(--black);
       }
     }
 

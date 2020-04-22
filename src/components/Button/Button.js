@@ -13,6 +13,6 @@ export const Button = styled.button`
 
   &:hover {
     background-color: var(--sidebar-active-link-bg-color);
-    color: #ffffff;
+    color: var(--white);
   }
 `;
