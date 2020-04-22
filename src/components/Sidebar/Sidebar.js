@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { Card } from '../Card/Card';
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
+import brFlag from '../../../public/img/br-flag.png';
 
 const StyledLi = styled.li`
   display: flex;
@@ -19,8 +20,16 @@ const StyledLi = styled.li`
     transition: color 300ms ease-in-out;
   }
 
+  img {
+    width: 24px;
+    background-color: var(--sidebar-active-link-bg-color);
+  }
+
   &:hover i {
     color: var(--sidebar-active-link-bg-color);
+  }
+
+  &:hover img {
   }
 
   a {
@@ -62,7 +71,11 @@ const StyledLi = styled.li`
 const SidebarItem = ({ title, href, icon }) => (
   <PageAwareLink href={href}>
     <StyledLi>
-      <i className={`cil-${icon}`} />
+      {icon === 'brazil' ?
+        <img src={brFlag} />
+        :
+        <i className={`cil-${icon}`} />
+      }
       <a>{title}</a>
     </StyledLi>
   </PageAwareLink>
@@ -176,7 +189,7 @@ export const Sidebar = () => {
       <SidebarLinks ref={sidebarLinksRef}>
         <ul style={{ listStyle: 'none' }}>
           <SidebarItem title="Mundo" icon="globe-alt" href="/" />
-          <SidebarItem title="Brasil" icon="home" href="/brazil" />
+          <SidebarItem title="Brasil" icon="brazil" href="/brazil" />
           <SidebarItem title="Notícias" icon="newspaper" href="/news" />
           <SidebarItem title="Dicas" icon="healing" href="/safety" />
         </ul>
