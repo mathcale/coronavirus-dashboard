@@ -164,4 +164,21 @@ body,
     }
   }
 }
+
+footer {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--card-stats-title-color);
+
+    a {
+      font-weight: bold;
+      color: var(--card-stats-title-color);
+    }
+  }
+}
 `;

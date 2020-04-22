@@ -8,7 +8,14 @@ export const Layout = ({ children }) => (
       </div>
 
       <div className="col-md-11 col-xs-12 with-full-height main-container" style={{ paddingRight: 0 }}>
-        {children}
+        <>
+          {children}
+
+          <footer>
+            <p>Fonte: Organização Mundial de Saúde</p>
+            <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a></p>
+          </footer>
+        </>
       </div>
     </div>
   </div>
