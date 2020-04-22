@@ -50,14 +50,87 @@ body,
   font-family: 'Roboto', sans-serif;
 }
 
+.row, .col-xs, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-offset-0, .col-xs-offset-1, .col-xs-offset-10, .col-xs-offset-11, .col-xs-offset-12, .col-xs-offset-2, .col-xs-offset-3, .col-xs-offset-4, .col-xs-offset-5, .col-xs-offset-6, .col-xs-offset-7, .col-xs-offset-8, .col-xs-offset-9 {
+  @media (max-width: 1024px) {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.app-wrapper {
+  height: 100vh;
+  padding: 20px;
+
+  @media (max-width: 1024px) {
+    padding: 0px;
+  }
+}
+
+.app-row {
+  margin-right: 0px;
+
+  @media (max-width: 1024px) {
+    margin: 0px;
+  }
+}
+
 .with-full-height {
   height: 100%;
+}
+
+.with-top-spacing {
+  margin-top: 20px;
+
+  @media (max-width: 1024px) {
+    margin-top: 0px;
+  }
+}
+
+.with-responsive-top-spacing {
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+  }
 }
 
 .sidebar {
   @media (max-width: 1024px) {
     height: fit-content !important;
     margin-bottom: 20px;
+  }
+}
+
+.sidebar,
+.main-content {
+  @media (max-width: 1024px) {
+    padding: 0px;
+  }
+}
+
+.main-container {
+  @media (max-width: 1024px) {
+    padding: 0 20px !important;
+  }
+
+  & > .row {
+    @media (max-width: 1024px) {
+      margin: 0px;
+    }
+  }
+}
+
+.index-page {
+  height: 100%;
+
+  @media (max-width: 1024px) {
+    height: fit-content;
+  }
+
+  .summary-column {
+    height: 100%;
+
+    @media (max-width: 1024px) {
+      height: 300px;
+    }
   }
 }
 

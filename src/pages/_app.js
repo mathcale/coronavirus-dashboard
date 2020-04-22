@@ -30,7 +30,7 @@ const CustomApp = ({ Component, pageProps }) => {
         <title>COVID-19 Dashboard</title>
         <link rel="shortcut icon" href="/img/virus.png" />
 
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" key="viewport" />
         <meta name="author" content="Matheus Calegaro <hello@matheus.me>" />
         <meta name="description" content="Follow COVID-19 infection and recovery numbers around the world" />
         <meta name="keywords" content="coronavirus,covid-19,covid19,dashboard,data,analytics,brasil,mundo,world,virus" />

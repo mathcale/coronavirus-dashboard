@@ -14,11 +14,31 @@ export const Card = styled.div`
   border-radius: 25px;
   overflow-y: ${props => props.fullHeight && 'scroll'};
 
+  @media (max-width: 1024px) {
+    margin-bottom: ${props => !props.sidebar && '15px'};
+  }
+
   ${props => props.sidebar && `
     @media (max-width: 1024px) {
       flex-direction: row;
       width: 100%;
       height: 80px;
+      border-radius: 0px;
+    }
+  `}
+
+  ${props => props.cta && `
+    @media (max-width: 1024px) {
+      text-align: center;
+
+      .col-md-4 {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin: 0 auto;
+      }
     }
   `}
 
@@ -77,14 +97,37 @@ export const Card = styled.div`
       font-weight: bold;
       color: var(--card-stats-title-color);
 
-      &:first-child {
-        margin-right: 5px;
+      &:first-child::after {
+        content: '|';
+        margin: 0 5px;
+
+        @media (max-width: 1024px) {
+          content: '';
+          margin: 0px;
+        }
       }
     }
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+
+  .summary-column--notice {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--card-stats-title-color);
   }
 
   .world-summary {
     height: 100%;
+  }
+
+  /* Call-To-Action styles */
+  .cta--image {
+    display: block;
+    width: 150px;
+    margin: 0 auto;
   }
 
   /* News styles */
@@ -153,7 +196,7 @@ export const CountrySummaryCard = props => (
     </div>
 
     <div className="country-summary--data">
-      <p>Infectados: {Number(props.cases).toLocaleString()} |</p>
+      <p>Infectados: {Number(props.cases).toLocaleString()}</p>
       <p>Recuperados: {Number(props.recovered).toLocaleString()}</p>
     </div>
   </Card>

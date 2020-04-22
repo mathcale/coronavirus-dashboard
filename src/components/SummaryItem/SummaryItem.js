@@ -27,8 +27,6 @@ export const SummaryItem = props => (
     <p className="world-summary-item--name">{props.name}</p>
     <p className="world-summary-item--count">
       {Number(props.cases).toLocaleString()}
-      {' / '}
-      {Number(props.deaths).toLocaleString()}
     </p>
   </SummaryItemContainer>
 )

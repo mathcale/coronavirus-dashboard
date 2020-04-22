@@ -24,10 +24,10 @@ const IndexPage = ({ worldData }) => {
   });
 
   return (
-    <div className="row" style={{ height: '100%' }}>
-      <div className="col-md-9" style={{ height: '100%' }}>
+    <div className="row index-page">
+      <div className="col-md-9 col-xs-12 main-column" style={{ height: '100%' }}>
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 col-xs-12">
             <Card>
               <div className="row" style={{ margin: '0px' }}>
                 <div className="col-md-7">
@@ -44,7 +44,7 @@ const IndexPage = ({ worldData }) => {
             </Card>
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-3 col-xs-12">
             <Card>
               <div className="row" style={{ margin: '0px' }}>
                 <div className="col-md-7">
@@ -61,7 +61,7 @@ const IndexPage = ({ worldData }) => {
             </Card>
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-3 col-xs-12">
             <Card>
               <div className="row" style={{ margin: '0px' }}>
                 <div className="col-md-7">
@@ -78,7 +78,7 @@ const IndexPage = ({ worldData }) => {
             </Card>
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-3 col-xs-12">
             <Card>
               <h4 className="stats--title">Casos Ativos</h4>
               <p className="stats--counter">{Number(worldData.today.active).toLocaleString()}</p>
@@ -86,17 +86,17 @@ const IndexPage = ({ worldData }) => {
           </div>
         </div>
 
-        <div className="row" style={{ marginTop: 20 }}>
+        <div className="row with-top-spacing">
           <div className="col-md-12">
             <Card>
               <div className="row">
-                <div className="col-md-8">
+                <div className="col-md-8 col-xs-12">
                   <h2 style={{ marginBottom: 20 }}>Áreas Afetadas</h2>
 
                   <WorldMap data={mapData} />
                 </div>
 
-                <div className="col-md-4">
+                <div className="col-md-4 col-xs-12 with-responsive-top-spacing">
                   <h2 style={{ marginBottom: 20 }}>Mais Afetados</h2>
 
                   {topCountries.map((country, i) => (
@@ -115,12 +115,12 @@ const IndexPage = ({ worldData }) => {
           </div>
         </div>
 
-        <div className="row" style={{ marginTop: 20 }}>
+        <div className="row with-top-spacing">
           <div className="col-md-6">
-            <Card>
-              <div className="row">
+            <Card cta>
+              <div className="row cta">
                 <div className="col-md-4">
-                  <img src="/img/brazil.png" width="150px" style={{ display: 'block', margin: '0 auto' }} />
+                  <img src="/img/brazil.png" className="cta--image" />
                 </div>
 
                 <div className="col-md-8" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -136,10 +136,10 @@ const IndexPage = ({ worldData }) => {
           </div>
 
           <div className="col-md-6">
-            <Card>
-              <div className="row">
+            <Card cta>
+              <div className="row cta">
                 <div className="col-md-4">
-                  <img src="/img/donate.png" width="150px" style={{ display: 'block', margin: '0 auto' }} />
+                  <img src="/img/donate.png" className="cta--image" />
                 </div>
 
                 <div className="col-md-8" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -156,9 +156,10 @@ const IndexPage = ({ worldData }) => {
         </div>
       </div>
 
-      <div className="col-md-3" style={{ height: '100%' }}>
+      <div className="col-md-3 col-xs-12 summary-column">
         <Card fullHeight>
-          <h2 style={{ marginBottom: 20 }}>Resumo por País</h2>
+          <h2 style={{ marginBottom: 5 }}>Resumo por País</h2>
+          <p className="summary-column--notice">Ordenado por nº de casos confirmados</p>
 
           <div className="world-summary">
             {worldData.countries.map((country, i) => (
