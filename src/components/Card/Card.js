@@ -4,7 +4,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${props=> props.sidebar ? 'center' : null};
-  justify-content: ${props => props.sidebar ? 'space-between' : null};
+  justify-content: ${props => props.sidebar ? 'space-between' : (props.centerJustified ? 'center' : null)};
   width: ${props => props.sidebar ? '80px' : '100%'};
   height: ${props => props.sidebar || props.fullHeight ? '100%' : 'fit-content'};
   margin-bottom: ${props => props.countrySummary ? '15px' : null};
@@ -176,6 +176,26 @@ export const Card = styled.div`
     }
   }
 `;
+
+const CardFOVWrapper = styled.div`
+  position: relative;
+`;
+
+const FOV = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  width: calc(100% - 5px);
+  height: 80px;
+  background-image: linear-gradient(to bottom, transparent 0%, var(--white) 80%);
+  border-radius: 0 0 25px 25px;
+`;
+
+export const CardFOV = () => (
+  <CardFOVWrapper>
+    <FOV />
+  </CardFOVWrapper>
+);
 
 export const CountrySummaryCard = props => (
   <Card countrySummary>

@@ -130,10 +130,12 @@ body,
   }
 
   .summary-column {
+    position: relative;
     height: 100%;
 
     @media (max-width: 1024px) {
       height: 300px;
+      margin-bottom: 20px;
     }
   }
 }

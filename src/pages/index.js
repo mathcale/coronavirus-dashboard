@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import fetch from 'isomorphic-unfetch';
 
-import { Card, CountrySummaryCard, SummaryItem, Button } from '../components';
+import { Card, CardFOV, CountrySummaryCard, SummaryItem, Button } from '../components';
 import { buildAreaChartSeries } from '../utils';
 import Link from 'next/link';
 
@@ -79,7 +79,7 @@ const IndexPage = ({ worldData }) => {
           </div>
 
           <div className="col-md-3 col-xs-12">
-            <Card>
+            <Card fullHeight centerJustified>
               <h4 className="stats--title">Casos Ativos</h4>
               <p className="stats--counter">{Number(worldData.today.active).toLocaleString()}</p>
             </Card>
@@ -173,6 +173,8 @@ const IndexPage = ({ worldData }) => {
             ))}
           </div>
         </Card>
+
+        <CardFOV />
       </div>
     </div>
   )

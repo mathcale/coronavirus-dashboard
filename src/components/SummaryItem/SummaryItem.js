@@ -6,6 +6,10 @@ const SummaryItemContainer = styled.div`
   align-items: center;
   margin-bottom: 25px;
 
+  &:last-child {
+    margin-bottom: 65px;
+  }
+
   .world-summary-item--name {
     font-weight: bold;
   }
