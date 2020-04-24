@@ -4,7 +4,18 @@
       "GA_TRACKING_ID": "@ga_tracking_id",
       "COVID19_DASH_NOVEL_ENDPOINT": "@covid19_dash_novel_endpoint",
       "COVID19_DASH_WORLD_MAP_ENDPOINT": "@covid19_dash_world_map_endpoint",
-      "COVID19_DASH_NEWS_ENDPOINT": "@covid19_dash_news_endpoint"
+      "COVID19_DASH_NEWS_ENDPOINT": "@covid19_dash_news_endpoint",
+      "COVID19_DASH_BRAZIL_ENDPOINT": "@covid19_dash_brazil_endpoint"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=86400"
+      },
+      "dest": "/api/$1",
+      "continue": true
+    }
+  ]
 }

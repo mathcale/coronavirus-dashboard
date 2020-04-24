@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import { Card } from '../Card/Card';
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
-import brFlag from '../../../public/img/br-flag.png';
 
 const StyledLi = styled.li`
   display: flex;
@@ -20,16 +19,21 @@ const StyledLi = styled.li`
     transition: color 300ms ease-in-out;
   }
 
-  img {
+  .br-flag {
     width: 24px;
-    background-color: var(--sidebar-active-link-bg-color);
+    height: 24px;
+    background: url('/img/br-flag.png') no-repeat center center;
+    background-size: contain;
+    transition: all 300ms ease-in-out;
   }
 
   &:hover i {
     color: var(--sidebar-active-link-bg-color);
   }
 
-  &:hover img {
+  &:hover .br-flag {
+    background: url('/img/br-flag-hover.png') no-repeat center center;
+    background-size: contain;
   }
 
   a {
@@ -58,6 +62,11 @@ const StyledLi = styled.li`
       color: var(--sidebar-active-link-color);
     }
 
+    .br-flag {
+      background: url('/img/br-flag-active.png') no-repeat center center;
+      background-size: contain;
+    }
+
     a {
       display: block;
 
@@ -68,18 +77,20 @@ const StyledLi = styled.li`
   }
 `;
 
-const SidebarItem = ({ title, href, icon }) => (
-  <PageAwareLink href={href}>
-    <StyledLi>
-      {icon === 'brazil' ?
-        <img src={brFlag} />
-        :
-        <i className={`cil-${icon}`} />
-      }
-      <a>{title}</a>
-    </StyledLi>
-  </PageAwareLink>
-);
+const SidebarItem = ({ title, href, icon }) => {
+  return (
+    <PageAwareLink href={href}>
+      <StyledLi>
+        {icon === 'brazil' ?
+          <div className="br-flag" />
+          :
+          <i className={`cil-${icon}`} />
+        }
+        <a>{title}</a>
+      </StyledLi>
+    </PageAwareLink>
+  )
+};
 
 const SidebarLinks = styled.div`
   @media (max-width: 1024px) {
