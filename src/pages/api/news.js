@@ -6,7 +6,7 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.statusCode = 405;
 
-    res.end(JSON.stringify({ message: 'Method Not Allowed!' }))
+    res.end(JSON.stringify({ message: 'Method Not Allowed!' }));
   }
 
   const endpoint = process.env.COVID19_DASH_NEWS_ENDPOINT;
