@@ -27,7 +27,10 @@ const SummaryItemContainer = styled.div`
 
 export const SummaryItem = props => (
   <SummaryItemContainer>
-    <img src={props.flag} />
+    {props.flag && (
+      <img src={props.flag} />
+    )}
+
     <p className="world-summary-item--name">{props.name}</p>
     <p className="world-summary-item--count">
       {Number(props.cases).toLocaleString()}

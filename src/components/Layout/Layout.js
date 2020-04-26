@@ -12,7 +12,7 @@ export const Layout = ({ children }) => (
           {children}
 
           <footer>
-            <p>Fonte: Organização Mundial de Saúde</p>
+            <p>Fontes: Organização Mundial de Saúde, Ministério da Saúde do Brasil, Secretarias de Saúde.</p>
             <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a></p>
           </footer>
         </>

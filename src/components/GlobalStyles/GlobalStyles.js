@@ -122,7 +122,8 @@ body,
   }
 }
 
-.index-page {
+.index-page,
+.brazil-page {
   height: 100%;
 
   @media (max-width: 1024px) {

@@ -62,6 +62,10 @@ export const Card = styled.div`
     color: var(--black);
   }
 
+  .stats--share a:not(:last-child) {
+    margin-right: 10px;
+  }
+
   /* Countries summary styles */
   .country-summary--title,
   .country-summary--data {
@@ -78,8 +82,26 @@ export const Card = styled.div`
     }
   }
 
+  input {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border: 1px solid #FFB5B3;
+    border-radius: 4px;
+    transition: border 300ms ease-in-out;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #FA726E;
+    }
+  }
+
   .country-summary--data {
     justify-content: left;
+    position: relative;
+    margin-top: 20px;
 
     p {
       font-size: 16px;
@@ -103,7 +125,6 @@ export const Card = styled.div`
   }
 
   .summary-column--notice {
-    margin-bottom: 20px;
     font-size: 14px;
     color: var(--card-stats-title-color);
   }

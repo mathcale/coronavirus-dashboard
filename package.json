@@ -28,6 +28,8 @@
     "react-apexcharts": "^1.3.7",
     "react-dom": "^16.13.0",
     "react-jvectormap": "^0.0.16",
+    "react-simple-maps": "^2.0.0",
+    "react-tooltip": "^4.2.5",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
