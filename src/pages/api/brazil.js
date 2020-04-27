@@ -10,10 +10,6 @@ export default async (req, res) => {
   }
 
   const endpoint = process.env.COVID19_DASH_BRAZIL_ENDPOINT;
-  const endpointMap = process.env.COVID19_DASH_BRAZIL_MAP_ENDPOINT;
-
-  const responseBrazilMap = await fetch(endpointMap);
-  const brazilMap = await responseBrazilMap.json();
 
   const responseBrazilLatestStates = await fetch(`${endpoint}?is_last=True&place_type=state&format=json`);
   const brazilLatestStates = await responseBrazilLatestStates.json();
@@ -58,7 +54,6 @@ export default async (req, res) => {
     summary,
     todayCases,
     states: brazilLatestStates.results,
-    map: brazilMap,
   };
 
   res.status(200).json(JSON.stringify(data));

@@ -124,7 +124,7 @@ const BrazilPage = ({ brazil }) => {
                 <div className="col-md-8 col-xs-12">
                   <h2 style={{ marginBottom: 20 }}>Mapa do Brasil</h2>
 
-                  <BrazilMap geography={brazil.map} data={brazil.states} />
+                  <BrazilMap data={brazil.states} />
                 </div>
 
                 <div className="col-md-4 col-xs-12 with-responsive-top-spacing">

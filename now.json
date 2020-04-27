@@ -6,7 +6,6 @@
       "COVID19_DASH_WORLD_MAP_ENDPOINT": "@covid19_dash_world_map_endpoint",
       "COVID19_DASH_NEWS_ENDPOINT": "@covid19_dash_news_endpoint",
       "COVID19_DASH_BRAZIL_ENDPOINT": "@covid19_dash_brazil_endpoint",
-      "COVID19_DASH_BRAZIL_MAP_ENDPOINT": "@covid19_dash_brazil_map_endpoint",
       "COVID19_DASH_FB_APP_ID": "@covid19_dash_fb_app_id"
     }
   },

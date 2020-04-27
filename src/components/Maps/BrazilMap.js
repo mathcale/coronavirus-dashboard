@@ -3,6 +3,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simp
 import ReactTooltip from 'react-tooltip'
 
 import { MapLegend } from './MapLegend';
+import brazilStates from '../../utils/topojson/brazilStates.json';
 
 const colorScales = [
   { color: '#FFCDD2', range: [1, 24] },
@@ -29,7 +30,7 @@ const buildTooltipText = (state, confirmed, deaths) => `
 </ul>
 `;
 
-const BrazilMap = ({ geography, data }) => {
+const BrazilMap = ({ data }) => {
   const [tooltipText, setTooltipText] = useState('');
 
   return (
@@ -47,7 +48,7 @@ const BrazilMap = ({ geography, data }) => {
         data-tip=""
       >
         <ZoomableGroup center={[-53, -15]}>
-          <Geographies geography={geography}>
+          <Geographies geography={brazilStates}>
             {({ geographies }) =>
               geographies.map(geo => {
                 const current = data.find(state => state.city_ibge_code === geo.properties.CD_GEOCUF);
