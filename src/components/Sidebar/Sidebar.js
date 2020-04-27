@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import ReactTooltip from 'react-tooltip';
 
 import { Card } from '../Card/Card';
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
@@ -140,6 +141,22 @@ const SidebarMenu = props => (
 );
 
 const SidebarBottom = styled.div`
+  p:first-child {
+    cursor: default;
+  }
+
+  .sidebar-tooltip {
+    text-align: center;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: var(--white);
+    }
+  }
+
   @media (max-width: 1024px) {
     display: none;
   }
@@ -207,7 +224,23 @@ export const Sidebar = () => {
       </SidebarLinks>
 
       <SidebarBottom>
-        <p>👋</p>
+        <p data-tip data-for="sidebarCreditsTooltip">
+          <i className="cil-info" />
+        </p>
+
+        <ReactTooltip
+          id="sidebarCreditsTooltip"
+          effect="solid"
+          place="right"
+          type="dark"
+          className="sidebar-tooltip"
+          clickable
+          multiline
+        >
+          <p><strong>Fontes:</strong> Organização Mundial de Saúde, Min. da Saúde do Brasil<br />e Secretarias de Saúde dos Estados.</p>
+          <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a></p>
+          <p>Ver <a href="https://github.com/mathcale/coronavirus-dashboard" target="_blank">Código-Fonte</a> no GitHub</p>
+        </ReactTooltip>
       </SidebarBottom>
     </Card>
   )
