@@ -2,6 +2,8 @@ import { useState, memo } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import ReactTooltip from 'react-tooltip'
 
+import { MapLegend } from './MapLegend';
+
 const colorScales = [
   { color: '#FFCDD2', range: [1, 24] },
   { color: '#EF9A9A', range: [25, 49] },
@@ -88,6 +90,8 @@ const BrazilMap = ({ geography, data }) => {
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
+
+      <MapLegend scales={colorScales} />
 
       <ReactTooltip>
         <div dangerouslySetInnerHTML={{ __html: tooltipText }} />
