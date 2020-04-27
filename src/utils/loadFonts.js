@@ -16,8 +16,8 @@ export const loadFonts = () => {
   const coreUiFonts = new FontFaceObserver('CoreUI-Icons-Free');
 
   Promise.all([
-    roboto.load(null, 10),
-    coreUiFonts.load(null, 10),
+    roboto.load(null, 10000),
+    coreUiFonts.load(null, 10000),
   ]).then(() => {
     document.documentElement.classList.add('with-roboto');
     document.documentElement.classList.add('with-icons');
