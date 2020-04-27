@@ -20,6 +20,16 @@ export const Button = styled.button`
   &:active {
     outline: none;
   }
+
+  &:disabled {
+    border: 2px solid var(--sidebar-link-color);
+    color: var(--sidebar-link-color);
+
+    &:hover {
+      background-color: var(--sidebar-link-color);
+      color: var(--white);
+    }
+  }
 `;
 
 export const ButtonGroup = styled.div`

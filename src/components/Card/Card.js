@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { brazilianStates } from '../../utils';
+import { StateFlag } from '../StateFlag/StateFlag';
 
 export const Card = styled.div`
   display: flex;
@@ -56,7 +58,8 @@ export const Card = styled.div`
     color: var(--card-stats-title-color);
   }
 
-  .stats--counter {
+  .stats--counter,
+  .stats--state p {
     font-size: 32px;
     font-weight: bold;
     color: var(--black);
@@ -64,6 +67,16 @@ export const Card = styled.div`
 
   .stats--share a:not(:last-child) {
     margin-right: 10px;
+  }
+
+  .stats--state {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+    }
   }
 
   /* Countries/States summary styles */
@@ -75,13 +88,14 @@ export const Card = styled.div`
     flex-direction: row;
   }
 
+  .country-summary--title img,
+  .state-summary--title img {
+    width: 32px;
+    margin-right: 10px;
+  }
+
   .country-summary--title {
     margin-bottom: 15px;
-
-    img {
-      width: 32px;
-      margin-right: 10px;
-    }
   }
 
   .country-summary--data,
@@ -123,11 +137,12 @@ export const Card = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 7px;
-    border: 1px solid #FFB5B3;
+    border: 1px solid var(--sidebar-link-color);
     border-radius: 4px;
     transition: border 300ms ease-in-out;
 
-    &:focus {
+    &:focus,
+    &:hover {
       outline: none;
       border: 1px solid #FA726E;
     }
@@ -239,7 +254,8 @@ export const CountrySummaryCard = props => (
 export const StateSummaryCard = props => (
   <Card stateSummary>
     <div className="state-summary--title">
-      <h3>{props.name}</h3>
+      <StateFlag state={props.name} />
+      <h3>{brazilianStates[props.name]}</h3>
     </div>
 
     <div className="state-summary--data">

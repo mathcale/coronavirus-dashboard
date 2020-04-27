@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import { Card, CardFOV, Button, SummaryItem, StateSummaryCard, ButtonGroup } from '../components';
+import { Card, CardFOV, Button, SummaryItem, StateSummaryCard, ButtonGroup, StateFlag } from '../components';
 import { brazilianStates } from '../utils';
 
 import world from '../../public/img/world.png';
@@ -60,7 +60,7 @@ const BrazilPage = ({ brazil }) => {
           <div className="col-md-3 col-xs-12">
             <Card>
               <div className="row" style={{ margin: '0px' }}>
-                <div className="col-md-7">
+                <div className="col-md-12">
                   <h4 className="stats--title">Casos Confirmados</h4>
                   <p className="stats--counter">{brazil.summary.confirmed.toLocaleString()}</p>
                 </div>
@@ -71,7 +71,7 @@ const BrazilPage = ({ brazil }) => {
           <div className="col-md-3 col-xs-12">
             <Card>
               <div className="row" style={{ margin: '0px' }}>
-                <div className="col-md-7">
+                <div className="col-md-12">
                   <h4 className="stats--title">Total de Mortes</h4>
                   <p className="stats--counter">{brazil.summary.deaths.toLocaleString()}</p>
                 </div>
@@ -82,9 +82,12 @@ const BrazilPage = ({ brazil }) => {
           <div className="col-md-3 col-xs-12">
             <Card>
               <div className="row" style={{ margin: '0px' }}>
-                <div className="col-md-7">
+                <div className="col-md-12">
                   <h4 className="stats--title">Estado Mais Afetado</h4>
-                  <p className="stats--counter">{brazilianStates[brazil.summary.mostAffectedState]}</p>
+                  <div className="stats--state">
+                    <StateFlag state={brazil.summary.mostAffectedState} />
+                    <p>{brazilianStates[brazil.summary.mostAffectedState]}</p>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -129,7 +132,7 @@ const BrazilPage = ({ brazil }) => {
 
                   {paginatedStates[currentStatesPage].map((state, i) => (
                     <StateSummaryCard
-                      name={brazilianStates[state.state]}
+                      name={state.state}
                       cases={state.confirmed}
                       deaths={state.deaths}
                       key={i}
@@ -137,8 +140,23 @@ const BrazilPage = ({ brazil }) => {
                   ))}
 
                   <ButtonGroup>
-                    <Button small type="button" onClick={moveStatesPageBack}>&lt;</Button>
-                    <Button small type="button" onClick={moveStatesPageForward}>&gt;</Button>
+                    <Button
+                      small
+                      type="button"
+                      onClick={moveStatesPageBack}
+                      disabled={currentStatesPage === 0}
+                    >
+                      &lt;
+                    </Button>
+
+                    <Button
+                      small
+                      type="button"
+                      onClick={moveStatesPageForward}
+                      disabled={currentStatesPage === paginatedStates.length - 1}
+                    >
+                      &gt;
+                    </Button>
                   </ButtonGroup>
                 </div>
               </div>
@@ -194,7 +212,7 @@ const BrazilPage = ({ brazil }) => {
 
           <input
             type="text"
-            placeholder="Digite o nome de uma cidade"
+            placeholder="Digite o nome de uma cidade ou sigla do estado"
             value={city}
             onChange={e => setCity(e.target.value)}
           />
