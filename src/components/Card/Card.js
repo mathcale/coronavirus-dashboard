@@ -7,10 +7,10 @@ export const Card = styled.div`
   justify-content: ${props => props.sidebar ? 'space-between' : (props.centerJustified ? 'center' : null)};
   width: ${props => props.sidebar ? '80px' : '100%'};
   height: ${props => props.sidebar || props.fullHeight ? '100%' : 'fit-content'};
-  margin-bottom: ${props => props.countrySummary ? '15px' : null};
+  margin-bottom: ${props => props.countrySummary || props.stateSummary ? '15px' : null};
   padding: ${props => !props.news && '20px'};
   background-color: var(--card-default-color);
-  border: ${props => props.countrySummary ? '2px solid var(--card-border-color)' : null};
+  border: ${props => props.countrySummary || props.stateSummary ? '2px solid var(--card-border-color)' : null};
   border-radius: 25px;
   overflow-y: ${props => props.fullHeight && 'scroll'};
 
@@ -66,9 +66,11 @@ export const Card = styled.div`
     margin-right: 10px;
   }
 
-  /* Countries summary styles */
+  /* Countries/States summary styles */
   .country-summary--title,
-  .country-summary--data {
+  .country-summary--data,
+  .state-summary--title,
+  .state-summary--data {
     display: flex;
     flex-direction: row;
   }
@@ -82,26 +84,11 @@ export const Card = styled.div`
     }
   }
 
-  input {
-    position: relative;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 7px;
-    border: 1px solid #FFB5B3;
-    border-radius: 4px;
-    transition: border 300ms ease-in-out;
-
-    &:focus {
-      outline: none;
-      border: 1px solid #FA726E;
-    }
-  }
-
-  .country-summary--data {
+  .country-summary--data,
+  .state-summary--data {
     justify-content: left;
     position: relative;
-    margin-top: 20px;
+    margin-top: ${props => props.stateSummary ? '10px' : '20px'};
 
     p {
       font-size: 16px;
@@ -124,9 +111,26 @@ export const Card = styled.div`
     }
   }
 
+  /* Summary column styles */
   .summary-column--notice {
     font-size: 14px;
     color: var(--card-stats-title-color);
+  }
+
+  input {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border: 1px solid #FFB5B3;
+    border-radius: 4px;
+    transition: border 300ms ease-in-out;
+
+    &:focus {
+      outline: none;
+      border: 1px solid #FA726E;
+    }
   }
 
   .world-summary {
@@ -228,6 +232,19 @@ export const CountrySummaryCard = props => (
     <div className="country-summary--data">
       <p>Infectados: {Number(props.cases).toLocaleString()}</p>
       <p>Recuperados: {Number(props.recovered).toLocaleString()}</p>
+    </div>
+  </Card>
+);
+
+export const StateSummaryCard = props => (
+  <Card stateSummary>
+    <div className="state-summary--title">
+      <h3>{props.name}</h3>
+    </div>
+
+    <div className="state-summary--data">
+      <p>Infectados: {Number(props.cases).toLocaleString('pt-BR')}</p>
+      <p>Mortes: {Number(props.deaths).toLocaleString('pt-BR')}</p>
     </div>
   </Card>
 );

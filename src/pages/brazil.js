@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import { Card, CardFOV, Button, SummaryItem } from '../components';
+import { Card, CardFOV, Button, SummaryItem, StateSummaryCard, ButtonGroup } from '../components';
 import { brazilianStates } from '../utils';
 
 import world from '../../public/img/world.png';
@@ -15,11 +15,34 @@ import tt from '../../public/img/twitter.svg';
 const BrazilMap = dynamic(
   () => import('../components/Maps/BrazilMap'),
   { ssr: false },
-)
+);
+
+const chunkArray = (array, chunk_size) =>
+  Array(Math.ceil(array.length / chunk_size))
+    // @ts-ignore
+    .fill()
+    .map((_, index) => index * chunk_size)
+    .map(begin => array.slice(begin, begin + chunk_size));
 
 const BrazilPage = ({ brazil }) => {
   const [city, setCity] = useState('');
   const [filteredCases, setFilteredCases] = useState([]);
+  const [paginatedStates, _] = useState(chunkArray(brazil.states, 3));
+  const [currentStatesPage, setCurrentStatesPage] = useState(0);
+
+  const moveStatesPageBack = () => {
+    if (currentStatesPage === 0)
+      return false;
+
+    setCurrentStatesPage(currentStatesPage - 1);
+  };
+
+  const moveStatesPageForward = () => {
+    if (currentStatesPage === paginatedStates.length - 1)
+      return false;
+
+    setCurrentStatesPage(currentStatesPage + 1);
+  };
 
   useEffect(() => {
     if (city !== '') {
@@ -94,9 +117,31 @@ const BrazilPage = ({ brazil }) => {
         <div className="row with-top-spacing">
           <div className="col-md-12">
             <Card>
-              <h2 style={{ marginBottom: 20 }}>Estados Afetados</h2>
+              <div className="row">
+                <div className="col-md-8 col-xs-12">
+                  <h2 style={{ marginBottom: 20 }}>Estados Afetados</h2>
 
-              <BrazilMap geography={brazil.map} data={brazil.states} />
+                  <BrazilMap geography={brazil.map} data={brazil.states} />
+                </div>
+
+                <div className="col-md-4 col-xs-12 with-responsive-top-spacing">
+                  <h2 style={{ marginBottom: 20 }}>Mais Afetados</h2>
+
+                  {paginatedStates[currentStatesPage].map((state, i) => (
+                    <StateSummaryCard
+                      name={brazilianStates[state.state]}
+                      cases={state.confirmed}
+                      deaths={state.deaths}
+                      key={i}
+                    />
+                  ))}
+
+                  <ButtonGroup>
+                    <Button small type="button" onClick={moveStatesPageBack}>&lt;</Button>
+                    <Button small type="button" onClick={moveStatesPageForward}>&gt;</Button>
+                  </ButtonGroup>
+                </div>
+              </div>
             </Card>
           </div>
         </div>
