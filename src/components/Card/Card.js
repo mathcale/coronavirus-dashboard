@@ -94,10 +94,6 @@ export const Card = styled.div`
     margin-right: 10px;
   }
 
-  .country-summary--title {
-    margin-bottom: 15px;
-  }
-
   .country-summary--data,
   .state-summary--data {
     justify-content: left;
@@ -135,7 +131,6 @@ export const Card = styled.div`
     position: relative;
     width: 100%;
     margin-top: 10px;
-    margin-bottom: 10px;
     padding: 7px;
     border: 1px solid var(--sidebar-link-color);
     border-radius: 4px;
@@ -150,6 +145,7 @@ export const Card = styled.div`
 
   .world-summary {
     height: 100%;
+    margin-top: 20px;
   }
 
   /* Call-To-Action styles */

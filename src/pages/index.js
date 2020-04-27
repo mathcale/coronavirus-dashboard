@@ -5,6 +5,12 @@ import { Card, CardFOV, CountrySummaryCard, SummaryItem, Button } from '../compo
 import { buildAreaChartSeries } from '../utils';
 import Link from 'next/link';
 
+import brazil from '../../public/img/brazil.png';
+import donate from '../../public/img/donate.png';
+import wpp from '../../public/img/whatsapp.svg';
+import fb from '../../public/img/facebook.svg';
+import tt from '../../public/img/twitter.svg';
+
 const Chart = dynamic(
   () => import('../components/Chart/Chart'),
   { ssr: false },
@@ -13,7 +19,7 @@ const Chart = dynamic(
 const WorldMap = dynamic(
   () => import('../components/Maps/WorldMap'),
   { ssr: false },
-)
+);
 
 const IndexPage = ({ worldData }) => {
   const topCountries = worldData.countries.slice(0, 3);
@@ -80,8 +86,20 @@ const IndexPage = ({ worldData }) => {
 
           <div className="col-md-3 col-xs-12">
             <Card fullHeight centerJustified>
-              <h4 className="stats--title">Casos Ativos</h4>
-              <p className="stats--counter">{Number(worldData.today.active).toLocaleString()}</p>
+              <h4 className="stats--title">Compartilhar</h4>
+              <p className="stats--share">
+                <a href={`https://wa.me/?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20%2ACasos%20no%20Mundo%3A%2A%20${worldData.today.cases}%0A%F0%9F%92%80%20%2AMortes%20no%20Mundo%3A%2A%20${worldData.today.deaths}%0A%0A%2A%23FiqueEmCasa%2A`} target="_blank">
+                  <img src={wpp} alt="WhatsApp" style={{ width: '32px' }} />
+                </a>
+
+                <a href={`https://www.facebook.com/dialog/share?app_id=${process.env.COVID19_DASH_FB_APP_ID}&href=https://covid19.matheus.me&quote=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20Casos%20no%20Mundo%3A%20${worldData.today.cases}%0A%F0%9F%92%80%20Mortes%20no%20Mundo%3A%20${worldData.today.deaths}%0A%0A%23FiqueEmCasa`} target="_blank">
+                  <img src={fb} alt="Facebook" style={{ width: '32px' }} />
+                </a>
+
+                <a href={`https://twitter.com/intent/tweet?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20Casos%20no%20Mundo%3A%20${worldData.today.cases}%0A%F0%9F%92%80%20Mortes%20no%20Mundo%3A%20${worldData.today.deaths}%0A%0A%23FiqueEmCasa`} target="_blank">
+                  <img src={tt} alt="Twitter" style={{ width: '32px' }} />
+                </a>
+              </p>
             </Card>
           </div>
         </div>
@@ -120,7 +138,7 @@ const IndexPage = ({ worldData }) => {
             <Card cta>
               <div className="row cta">
                 <div className="col-md-4">
-                  <img src="/img/brazil.png" className="cta--image" />
+                  <img src={brazil} className="cta--image" />
                 </div>
 
                 <div className="col-md-8" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -139,7 +157,7 @@ const IndexPage = ({ worldData }) => {
             <Card cta>
               <div className="row cta">
                 <div className="col-md-4">
-                  <img src="/img/donate.png" className="cta--image" />
+                  <img src={donate} className="cta--image" />
                 </div>
 
                 <div className="col-md-8" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
