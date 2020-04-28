@@ -1,24 +1,10 @@
-import { getMessage } from '../lang';
-
-export const buildAreaChartSeries = (data, lang) => {
-  const totalConfirmedData = data.map(report => ({
-    x: report.reportDate,
-    y: report.confirmed.total,
+export const buildAreaChartSeries = data => {
+  const series = Object.keys(data).map(reportDate => ({
+    x: reportDate,
+    y: data[reportDate],
   }));
-
-  const totalDeathsData = data.map(report => ({
-    x: report.reportDate,
-    y: report.deaths.total,
-  }));
-
-  // const totalRecoveredData = data.map(report => ({
-  //   x: report.reportDate,
-  //   y: report.recovered.total,
-  // }));
 
   return [
-    { name: getMessage('TOTAL_CONFIRMED', lang), data: totalConfirmedData },
-    { name: getMessage('TOTAL_DEATHS', lang), data: totalDeathsData },
-    // { name: getMessage('TOTAL_RECOVERED', lang), data: totalRecoveredData },
+    { data: series },
   ];
 };

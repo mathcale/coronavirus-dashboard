@@ -1,223 +1,252 @@
-import { createRef, forwardRef } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
+import { Card } from '../Card/Card';
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
-import { getMessage } from '../../lang';
 
-const Ul = styled.ul`
-  position: relative;
-  margin-top: 100px;
-  margin-left: 20px;
-  list-style: none;
-  transition: all 300ms ease-in-out;
+const Tooltip = dynamic(
+  () => import('../Tooltip/Tooltip'),
+  { ssr: false },
+)
 
-  @media screen and (max-width: 1130px) {
-    display: none;
-    margin-top: 20px;
-    text-align: center;
+const StyledLi = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  cursor: pointer;
+
+  i {
+    font-size: 24px;
+    color: var(--sidebar-link-color);
+    transition: color 300ms ease-in-out;
   }
 
-  &.show {
-    display: block;
+  .br-flag {
+    width: 24px;
+    height: 24px;
+    background: url('/img/br-flag.png') no-repeat center center;
+    background-size: contain;
+    transition: all 300ms ease-in-out;
+  }
 
-    li {
-      display: block !important;
-      margin-bottom: 10px;
+  &:hover i {
+    color: var(--sidebar-active-link-bg-color);
+  }
+
+  &:hover .br-flag {
+    background: url('/img/br-flag-hover.png') no-repeat center center;
+    background-size: contain;
+  }
+
+  a {
+    display: none;
+    margin-top: 5px;
+    color: var(--sidebar-link-color);
+
+    @media (max-width: 1024px) {
+      display: block;
     }
   }
 
-  li {
-    margin-bottom: 30px;
+  &.active {
+    margin-left: 35px;
+    padding: 20px;
+    background-color: var(--sidebar-active-link-bg-color);
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(252, 49, 46, 0.8);
 
-    @media screen and (max-width: 1130px) {
-      display: inline-block;
-      margin-right: 20px;
-      margin-bottom: 0px;
+    @media (max-width: 1280px) {
+      margin-left: 0px;
+      padding: 10px;
+    }
+
+    i, a {
+      color: var(--sidebar-active-link-color);
+    }
+
+    .br-flag {
+      background: url('/img/br-flag-active.png') no-repeat center center;
+      background-size: contain;
     }
 
     a {
-      font-size: 18px;
-      text-decoration: none;
-      color: var(--white);
-      transition: color 300ms ease-in-out;
-      cursor: pointer;
+      display: block;
 
-      &:hover {
-        color: var(--accent-color);
-      }
-
-      &.selected {
-        font-weight: bold;
-        color: var(--accent-color);
-      }
-
-      svg {
-        margin-right: 5px;
+      @media (max-width: 1280px) {
+        font-size: 14px;
       }
     }
   }
 `;
 
-const SidebarBrandDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  cursor: pointer;
-
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 74px;
-    height: 64px;
-    margin-right: 15px;
-    background-color: var(--main-color);
-    border-radius: 10px;
-
-    img {
-      width: 42px;
-    }
-  }
-
-  h3 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    color: var(--white);
-  }
-`;
-
-export const SidebarBrand = props => (
-  <SidebarBrandDiv>
-    <PageAwareLink href="/">
-      <>
-        <div className="icon">
-          <img src="/img/virus.png" alt="COVID-19"/>
-        </div>
-
-        <h3>Coronavirus Statistics</h3>
-      </>
+const SidebarItem = ({ title, href, icon }) => {
+  return (
+    <PageAwareLink href={href}>
+      <StyledLi>
+        {icon === 'brazil' ?
+          <div className="br-flag" />
+          :
+          <i className={`cil-${icon}`} />
+        }
+        <a>{title}</a>
+      </StyledLi>
     </PageAwareLink>
-  </SidebarBrandDiv>
+  )
+};
+
+const SidebarLinks = styled.div`
+  @media (max-width: 1024px) {
+    display: none;
+
+    &.active {
+      display: block;
+      position: absolute;
+      width: 100%;
+      margin-top: 195px;
+      margin-left: -20px;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--sidebar-link-color);
+      z-index: 10;
+
+      ul {
+        padding: 0 20px;
+      }
+    }
+  }
+`;
+
+const SidebarMenuButtonWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+
+  padding: 5px 7px;
+  border: 1px solid var(--card-stats-title-color);
+  border-radius: 4px;
+
+  button {
+    background: none;
+    border: none;
+    font-size: 18px;
+  }
+`;
+
+const SidebarMenu = props => (
+  <SidebarMenuButtonWrapper>
+    <button type="button" onClick={props.onClick}>
+      <i className="cil-hamburger-menu" />
+    </button>
+  </SidebarMenuButtonWrapper>
 );
 
-const SidebarFooterWrapper = styled.div`
-  position: fixed;
-  bottom: 50px;
-  width: 300px;
-  padding-right: 60px;
-  text-align: center;
-
-  a {
-    transition: font-weight 300ms ease-in-out;
+const SidebarBottom = styled.div`
+  p:first-child {
+    cursor: default;
   }
 
-  a:hover {
-    font-weight: bold;
+  .sidebar-tooltip {
+    text-align: center;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: var(--white);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+const SidebarBrandWrapper = styled.div`
+  a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: var(--black);
+  }
+
+  img.sidebar--brand {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-right: 0px;
+
+    @media (max-width: 1024px) {
+      width: 32px;
+      margin-right: 10px;
+    }
   }
 
   p {
-    font-size: 14px;
-    color: var(--white);
-
-    a {
-      color: var(--accent-color);
-    }
-  }
-
-  p:last-child {
-    margin-top: 10px;
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  &.show {
-    display: block;
-  }
-
-  @media screen and (max-width: 1130px) {
     display: none;
-    position: initial;
-    width: 100%;
-    padding-right: initial;
-    padding-right: 0px;
-  }
-`;
-
-const SidebarFooter = forwardRef((props, ref) => (
-  <SidebarFooterWrapper ref={ref}>
-    <p dangerouslySetInnerHTML={{ __html: getMessage('CREATED_BY', props.lang) }} />
-
-    <p>
-      <a
-        href="https://github.com/mathcale/coronavirus-dashboard"
-        target="_blank"
-      >
-        <FontAwesomeIcon icon={faGithub} /> {getMessage('SOURCE_CODE', props.lang)}
-      </a>
-    </p>
-  </SidebarFooterWrapper>
-));
-
-const SidebarMenuWrapper = styled.div`
-  display: none;
-  text-align: center;
-
-  a.menu-toggle {
-    text-decoration: none;
+    font-size: 16px;
     font-weight: bold;
-    color: var(--white);
-    transition: color 300ms ease;
 
-    &:hover {
-      color: var(--accent-color);
+    span {
+      color: var(--brand-color);
+    }
+
+    @media (max-width: 1024px) {
+      display: block;
     }
   }
-
-  @media screen and (max-width: 1130px) {
-    display: block;
-  }
 `;
 
-export const Sidebar = props => {
-  const menuRef = createRef();
-  const footerRef = createRef();
-
-  const toggleMenu = e => {
-    e.preventDefault();
-    menuRef.current.classList.toggle('show');
-    footerRef.current.classList.toggle('show');
-  };
+export const Sidebar = () => {
+  const sidebarLinksRef = useRef();
 
   return (
-    <div className="sidebar">
-      <SidebarBrand />
+    <Card sidebar>
+      <SidebarBrandWrapper>
+        <Link href="/">
+          <a>
+            <img src="/img/virus.png" className="sidebar--brand" alt="COVID-19 Dashboard" />
+            <p><span>COVID-19</span> Dashboard</p>
+          </a>
+        </Link>
+      </SidebarBrandWrapper>
 
-      <SidebarMenuWrapper>
-        <a href="#" className="menu-toggle" onClick={toggleMenu}><FontAwesomeIcon icon={faBars} /> Menu</a>
-      </SidebarMenuWrapper>
+      <SidebarMenu onClick={() => sidebarLinksRef.current.classList.toggle('active')} />
 
-      <Ul ref={menuRef}>
-        {props.children}
-      </Ul>
+      <SidebarLinks ref={sidebarLinksRef}>
+        <ul style={{ listStyle: 'none' }}>
+          <SidebarItem title="Mundo" icon="globe-alt" href="/" />
+          <SidebarItem title="Brasil" icon="brazil" href="/brazil" />
+          <SidebarItem title="Notícias" icon="newspaper" href="/news" />
+          <SidebarItem title="Dicas" icon="healing" href="/safety" />
+        </ul>
+      </SidebarLinks>
 
-      <SidebarFooter lang={props.lang || 'pt-BR'} ref={footerRef} />
-    </div>
-  );
-};
+      <SidebarBottom>
+        <p data-tip data-for="sidebarCreditsTooltip">
+          <i className="cil-info" />
+        </p>
 
-export const SidebarLink = props => (
-  <li>
-    <PageAwareLink href={props.href}>
-      <a>
-        <FontAwesomeIcon icon={props.icon} /> {props.title}
-      </a>
-    </PageAwareLink>
-  </li>
-);
+        <Tooltip
+          id="sidebarCreditsTooltip"
+          effect="solid"
+          place="right"
+          type="dark"
+          className="sidebar-tooltip"
+          clickable
+          multiline
+        >
+          <p><strong>Fontes:</strong> Organização Mundial de Saúde, Min. da Saúde do Brasil<br />e Secretarias de Saúde dos Estados.</p>
+          <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a></p>
+          <p>Ver <a href="https://github.com/mathcale/coronavirus-dashboard" target="_blank">Código-Fonte</a> no GitHub</p>
+        </Tooltip>
+      </SidebarBottom>
+    </Card>
+  )
+}

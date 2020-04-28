@@ -5,3 +5,7 @@ node_modules
 .env
 .env.build
 .env.production
+
+# files that should be generated on deploy
+public/*.js
+public/*.map

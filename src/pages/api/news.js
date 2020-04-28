@@ -1,12 +1,18 @@
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
-export default (req, res) => {
-  axios
-    .get('https://covid.migre.me/api')
-    .then(response => {
-      res.status(200).json(response.data);
-    })
-    .catch(err => {
-      res.status(500).json({ message: err.message });
-    });
+export default async (req, res) => {
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = 405;
+
+    res.end(JSON.stringify({ message: 'Method Not Allowed!' }));
+  }
+
+  const endpoint = process.env.COVID19_DASH_NEWS_ENDPOINT;
+
+  const responseNews = await fetch(endpoint);
+  const news = await responseNews.json();
+
+  res.status(200).json(JSON.stringify(news));
 };

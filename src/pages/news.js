@@ -1,44 +1,50 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
-import { Container, NewsContainer, Card, NewsCard } from '../components';
-import { getMessage } from '../lang';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Card } from '../components';
 
-const NewsPage = props => {
-  const [news, setNews] = useState(null);
-
-  useEffect(() => {
-    async function fetchNews() {
-      try {
-        const response = await axios.get('/api/news');
-        setNews(response.data);
-      } catch (err) {
-        alert('Houve um problema ao buscar as notícias. Tente novamente mais tarde!');
-      }
-    }
-
-    fetchNews();
-  },[]);
-
+const NewsPage = ({ news }) => {
   return (
-    <Container>
-      <h1>{getMessage('NEWS_PAGE_TITLE', props.lang)}</h1>
+    <div className="row">
+      {news.length > 0 ? (
+        news.map((n, i) => (
+          <div className="col-md-3" key={i} style={{ marginBottom: 20 }}>
+            <Card news>
+              <div className="news-card--image">
+                {n.imagem !== '' ? (
+                  <img src={n.imagem} title={n.titulo} />
+                ) : (
+                  <p>Sem Imagem</p>
+                )}
+              </div>
 
-      {news ? (
-        <NewsContainer>
-          {news.map(n => (
-            <NewsCard news={n} key={n.id} lang={props.lang} />
-          ))}
-        </NewsContainer>
+              <div className="news-card--content">
+                <h3>{n.titulo}</h3>
+                <p><span>{n.site}</span>, em {new Date(n.dt_envio).toLocaleDateString('pt-br')} às {new Date(n.dt_envio).toLocaleTimeString('pt-br')}</p>
+
+                <a href={n.url} target="_blank">Ler Notícia <i className="cil-arrow-right" /></a>
+              </div>
+            </Card>
+          </div>
+        ))
       ) : (
-        <Card content>
-          <p><FontAwesomeIcon icon={faSpinner} spin /> {getMessage('LOADING', props.lang)}</p>
-        </Card>
+        <p>Notícias não disponíveis no momento!</p>
       )}
-    </Container>
-  );
+    </div>
+  )
 };
+
+export async function getServerSideProps(context) {
+  const dev = process.env.NODE_ENV !== 'production';
+  const endpoint = dev ? 'http://localhost:3000' : 'https://covid19.matheus.me'
+
+  const response = await fetch(`${endpoint}/api/news`);
+  const news = await response.json();
+
+  return {
+    props: {
+      news,
+    },
+  }
+}
 
 export default NewsPage;

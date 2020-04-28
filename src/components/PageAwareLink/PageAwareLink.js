@@ -7,11 +7,11 @@ export const PageAwareLink = ({ href, children }) => {
   let className = children.props.className || '';
 
   if (router.pathname === href) {
-    className = `${className} selected`;
+    className = `${className} active`;
   }
 
   return (
-    <Link href={href}>
+    <Link href={href} passHref>
       {React.cloneElement(children, { className })}
     </Link>
   );
