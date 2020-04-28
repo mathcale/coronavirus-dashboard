@@ -22,14 +22,31 @@ const CustomApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>COVID-19 Dashboard - Dados Atualizados Sobre a Pandemia</title>
-        <link rel="shortcut icon" href="/img/virus.png" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" key="viewport" />
         <meta name="author" content="Matheus Calegaro <hello@matheus.me>" />
         <meta name="description" content="Acompanhe os números e estatísticas atualizadas do COVID-19 no Brasil e no Mundo de forma simplificada e rápida." />
         <meta name="keywords" content="coronavirus,covid-19,covid19,dashboard,data,analytics,brasil,mundo,world,virus" />
         <meta name="robots" content="index,follow" />
+
+        <meta name="theme-color" content="#e74d5f" />
+        <meta name="mobile-web-app-capable" content="yes" />
+
+        <meta name="apple-mobile-web-app-title" content="COVID-19 Dashboard" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        <title>COVID-19 Dashboard - Dados Atualizados Sobre a Pandemia</title>
+
+        <link rel="shortcut icon" href="/img/virus.png" />
+        <link rel="manifest" href="/manifest.json" />
+
+        <link rel="apple-touch-icon" href="/img/icons/icon-152x152" />
+        <link rel="apple-touch-icon" href="/img/icons/icon-96x96" sizes="76x76" />
+        <link rel="apple-touch-icon" href="/img/icons/icon-128x128" sizes="120x120" />
+        <link rel="apple-touch-icon" href="/img/icons/icon-152x152" sizes="152x152" />
+        <link rel="icon" href="/img/icons/icon-128x128.png" sizes="128x128" />
+        <link rel="icon" href="/img/icons/icon-192x192.png" sizes="192x192" />
 
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`} />
 

@@ -1,5 +1,6 @@
-const withImages = require('next-images');
 const withPlugins = require('next-compose-plugins');
+const withImages = require('next-images');
+const withPWA = require('next-pwa');
 
 const nextConfig = {
   env: {
@@ -12,4 +13,11 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([withImages], nextConfig);
+module.exports = withPlugins([
+  withImages,
+  [withPWA, {
+    pwa: {
+      dest: 'public',
+    },
+  }],
+], nextConfig);
