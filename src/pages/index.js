@@ -85,7 +85,7 @@ const IndexPage = ({ worldData }) => {
           </div>
 
           <div className="col-md-3 col-xs-12">
-            <Card fullHeight centerJustified>
+            <Card>
               <h4 className="stats--title">Compartilhar</h4>
               <p className="stats--share">
                 <a href={`https://wa.me/?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20%2ACasos%20no%20Mundo%3A%2A%20${worldData.today.cases}%0A%F0%9F%92%80%20%2AMortes%20no%20Mundo%3A%2A%20${worldData.today.deaths}%0A%0A%2A%23FiqueEmCasa%2A`} target="_blank">
