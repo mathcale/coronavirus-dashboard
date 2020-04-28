@@ -11,7 +11,7 @@ const NewsPage = ({ news }) => {
             <Card news>
               <div className="news-card--image">
                 {n.imagem !== '' ? (
-                  <img src={n.imagem} title={n.titulo} alt={n.titulo} loading="lazy" />
+                  <img src={n.imagem} title={n.titulo} alt={n.titulo} />
                 ) : (
                   <p>Sem Imagem</p>
                 )}

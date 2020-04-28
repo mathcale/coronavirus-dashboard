@@ -1,6 +1,6 @@
 {
   "name": "coronavirus-dashboard",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": {
     "name": "Matheus Calegaro",
     "email": "hello@matheus.me",
@@ -29,6 +29,7 @@
     "react-apexcharts": "^1.3.7",
     "react-dom": "^16.13.0",
     "react-jvectormap": "^0.0.16",
+    "react-lazy-load-image-component": "^1.4.3",
     "react-simple-maps": "^2.0.0",
     "react-tooltip": "^4.2.5",
     "styled-components": "^5.0.1"

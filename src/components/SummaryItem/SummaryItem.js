@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const SummaryItemContainer = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ const SummaryItemContainer = styled.div`
 export const SummaryItem = props => (
   <SummaryItemContainer>
     {props.flag && (
-      <img src={props.flag} alt={props.name} loading="lazy" />
+      <LazyLoadImage src={props.flag} alt={props.name} width={32} height={21} />
     )}
 
     <p className="world-summary-item--name">{props.name}</p>

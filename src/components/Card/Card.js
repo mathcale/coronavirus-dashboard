@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import { brazilianStates } from '../../utils';
 import { StateFlag } from '../StateFlag/StateFlag';
 
@@ -268,7 +270,7 @@ export const CardFOV = () => (
 export const CountrySummaryCard = props => (
   <Card countrySummary>
     <div className="country-summary--title">
-      <img src={props.flag} alt={props.name} />
+      <LazyLoadImage src={props.flag} alt={props.name} width={32} height={21} />
       <h3>{props.name}</h3>
     </div>
 

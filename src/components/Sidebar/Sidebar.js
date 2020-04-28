@@ -9,7 +9,7 @@ import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
 const Tooltip = dynamic(
   () => import('../Tooltip/Tooltip'),
   { ssr: false },
-)
+);
 
 const StyledLi = styled.li`
   display: flex;

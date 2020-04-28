@@ -5,5 +5,5 @@ const StyledImg = styled.img`
 `;
 
 export const StateFlag = ({ state }) => (
-  <StyledImg src={`/img/flags/bandeira_${state.toLowerCase()}.png`} />
+  <StyledImg src={`/img/flags/bandeira_${state.toLowerCase()}.png`} alt={state} />
 );
