@@ -31,10 +31,23 @@ const CustomApp = ({ Component, pageProps }) => {
 
         <meta name="theme-color" content="#e74d5f" />
         <meta name="mobile-web-app-capable" content="yes" />
-
         <meta name="apple-mobile-web-app-title" content="COVID-19 Dashboard" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content="https://covid19.matheus.me" />
+        <meta name="twitter:title" content="COVID-19 Dashboard" />
+        <meta name="twitter:description" content="Acompanhe os números e estatísticas atualizadas do COVID-19 no Brasil e no Mundo de forma simplificada e rápida." />
+        <meta name="twitter:image" content="https://covid19.matheus.me/img/icons/icon-192x192.png" />
+        <meta name="twitter:creator" content="@DavidWShadow" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="COVID-19 Dashboard" />
+        <meta property="og:description" content="Acompanhe os números e estatísticas atualizadas do COVID-19 no Brasil e no Mundo de forma simplificada e rápida." />
+        <meta property="og:site_name" content="COVID-19 Dashboard" />
+        <meta property="og:url" content="https://covid19.matheus.me" />
+        <meta property="og:image" content="https://covid19.matheus.me/img/icons/icon-192x192.png" />
 
         <title>COVID-19 Dashboard - Dados Atualizados Sobre a Pandemia</title>
 
