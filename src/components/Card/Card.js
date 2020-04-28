@@ -44,6 +44,38 @@ export const Card = styled.div`
     }
   `}
 
+  ${props => props.content && `
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin-top: 10px;
+      margin-left: 20px;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+
+    a {
+      color: var(--sidebar-active-link-bg-color);
+    }
+
+    p.source {
+      margin-top: 10px;
+    }
+
+    p,
+    li {
+      color: var(--card-stats-title-color);
+    }
+
+    p {
+      line-height: 1.5rem;
+    }
+  `}
+
   .col-md-7,
   .col-md-5 {
     display: flex;
