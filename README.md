@@ -1,26 +1,34 @@
-# Coronavirus Dashboard
+<p align="center">
+  <img src="public/img/virus.png" />
+
+  <h1 align="center">COVID-19 Dashboard</h1>
+
+  <p align="center">
+    <a href="https://covid19.matheus.me">Acessar Site</a>
+  </p>
+</p>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Dashboard built with Next/React to help track COVID-19 around the world. Created with ❤️ and 😷 by [myself](https://matheus.me) for the world!.
+Dashboard feito com Next.js para ajudar na divulgação de dados sobre a pandemia do COVID-19, o qual afetou a vida de todos nós em 2020. Todos os dados são obtidos em fontes de confiança atualizadas diariamente.
 
-## Running
+Criado com ❤️ (e álcoo-gel) por [mim mesmo 😛](https://matheus.me) para os brasileiros e todo o mundo!
 
-Make sure you have [Node](https://nodejs.org) and [Yarn](https://yarnpkg.com) installed. Then, run these commands:
+## Executando
+
+Tenha certeza que o [Node 10.17.x](https://nodejs.org) e o [Yarn 1.x](https://yarnpkg.com) estão instalados. Feito isso, execute os seguintes comandos:
 
 ```sh
-# Install dependencies
+# Instala as dependências
 yarn
 
-# Run!
-yarn start
+# Iniciar a aplicação em dev
+yarn develop
 ```
 
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## Equipe ✨
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -35,4 +43,4 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+Este projeto segue a especificação [all-contributors](https://github.com/all-contributors/all-contributors). Todo tipo de contribuição é bem-vinda!
