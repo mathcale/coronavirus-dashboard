@@ -1,10 +1,15 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import ReactTooltip from 'react-tooltip';
+import dynamic from 'next/dynamic';
 
 import { Card } from '../Card/Card';
 import { PageAwareLink } from '../PageAwareLink/PageAwareLink';
+
+const Tooltip = dynamic(
+  () => import('../Tooltip/Tooltip'),
+  { ssr: false },
+)
 
 const StyledLi = styled.li`
   display: flex;
@@ -228,7 +233,7 @@ export const Sidebar = () => {
           <i className="cil-info" />
         </p>
 
-        <ReactTooltip
+        <Tooltip
           id="sidebarCreditsTooltip"
           effect="solid"
           place="right"
@@ -240,7 +245,7 @@ export const Sidebar = () => {
           <p><strong>Fontes:</strong> Organização Mundial de Saúde, Min. da Saúde do Brasil<br />e Secretarias de Saúde dos Estados.</p>
           <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a></p>
           <p>Ver <a href="https://github.com/mathcale/coronavirus-dashboard" target="_blank">Código-Fonte</a> no GitHub</p>
-        </ReactTooltip>
+        </Tooltip>
       </SidebarBottom>
     </Card>
   )
