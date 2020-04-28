@@ -243,8 +243,8 @@ export const Sidebar = () => {
           multiline
         >
           <p><strong>Fontes:</strong> Organização Mundial de Saúde, Min. da Saúde do Brasil<br />e Secretarias de Saúde dos Estados.</p>
-          <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank">Matheus Calegaro</a></p>
-          <p>Ver <a href="https://github.com/mathcale/coronavirus-dashboard" target="_blank">Código-Fonte</a> no GitHub</p>
+          <p>Desenvolvido com ❤️ (e álcool-gel) por <a href="https://matheus.me" target="_blank" rel="noopener">Matheus Calegaro</a></p>
+          <p>Ver <a href="https://github.com/mathcale/coronavirus-dashboard" target="_blank" rel="noopener">Código-Fonte</a> no GitHub</p>
         </Tooltip>
       </SidebarBottom>
     </Card>

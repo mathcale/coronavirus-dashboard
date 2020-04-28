@@ -11,7 +11,7 @@ const NewsPage = ({ news }) => {
             <Card news>
               <div className="news-card--image">
                 {n.imagem !== '' ? (
-                  <img src={n.imagem} title={n.titulo} />
+                  <img src={n.imagem} title={n.titulo} alt={n.titulo} loading="lazy" />
                 ) : (
                   <p>Sem Imagem</p>
                 )}
@@ -21,7 +21,7 @@ const NewsPage = ({ news }) => {
                 <h3>{n.titulo}</h3>
                 <p><span>{n.site}</span>, em {new Date(n.dt_envio).toLocaleDateString('pt-br')} às {new Date(n.dt_envio).toLocaleTimeString('pt-br')}</p>
 
-                <a href={n.url} target="_blank">Ler Notícia <i className="cil-arrow-right" /></a>
+                <a href={n.url} target="_blank" rel="noopener">Ler Notícia <i className="cil-arrow-right" /></a>
               </div>
             </Card>
           </div>

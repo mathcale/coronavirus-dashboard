@@ -268,7 +268,7 @@ export const CardFOV = () => (
 export const CountrySummaryCard = props => (
   <Card countrySummary>
     <div className="country-summary--title">
-      <img src={props.flag} />
+      <img src={props.flag} alt={props.name} />
       <h3>{props.name}</h3>
     </div>
 

@@ -28,7 +28,7 @@ const SummaryItemContainer = styled.div`
 export const SummaryItem = props => (
   <SummaryItemContainer>
     {props.flag && (
-      <img src={props.flag} />
+      <img src={props.flag} alt={props.name} loading="lazy" />
     )}
 
     <p className="world-summary-item--name">{props.name}</p>

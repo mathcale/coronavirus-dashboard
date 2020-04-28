@@ -10,7 +10,7 @@ const CustomErrorPage = ({ statusCode }) => {
       </Head>
 
       <div className="error">
-        <img src={statusCode ? fourOhFour : fiveHundred} />
+        <img src={statusCode ? fourOhFour : fiveHundred} alt="Error" />
         <h1>{statusCode ? 'Oops, houve um erro inesperado :(' : 'Página Não Encontrada!'}</h1>
       </div>
     </>

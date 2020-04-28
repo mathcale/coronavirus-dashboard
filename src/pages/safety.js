@@ -76,14 +76,14 @@ const SafetyPage = props => {
             <h2>Serviços e Utilidades</h2>
 
             <ul>
-              <li><a href="https://coronavirus.saude.gov.br/" target="_blank">Página oficial do Min. da Saúde</a></li>
-              <li><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank">Página oficial da Organização Mundial de Saúde</a></li>
-              <li><a href="https://www.saude.gov.br/fakenews" target="_blank">Cuidado com as Fake News! - Min. da Saúde</a></li>
-              <li><a href="http://portal.anvisa.gov.br/documents/219201/4340788/NT+M%C3%A1scaras.pdf/bf430184-8550-42cb-a975-1d5e1c5a10f7" target="_blank">Como confeccionar e usar máscaras caseiras - ANVISA</a></li>
-              <li><a href="https://portalarquivos.saude.gov.br/images/pdf/2020/April/18/postos-de-sa--de-com-endere--o.pdf" target="_blank">Lista de postos de saúde no Brasil - Min. da Saúde</a></li>
+              <li><a href="https://coronavirus.saude.gov.br/" target="_blank" rel="noopener">Página oficial do Min. da Saúde</a></li>
+              <li><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank" rel="noopener">Página oficial da Organização Mundial de Saúde</a></li>
+              <li><a href="https://www.saude.gov.br/fakenews" target="_blank" rel="noopener">Cuidado com as Fake News! - Min. da Saúde</a></li>
+              <li><a href="http://portal.anvisa.gov.br/documents/219201/4340788/NT+M%C3%A1scaras.pdf/bf430184-8550-42cb-a975-1d5e1c5a10f7" target="_blank" rel="noopener">Como confeccionar e usar máscaras caseiras - ANVISA</a></li>
+              <li><a href="https://portalarquivos.saude.gov.br/images/pdf/2020/April/18/postos-de-sa--de-com-endere--o.pdf" target="_blank" rel="noopener">Lista de postos de saúde no Brasil - Min. da Saúde</a></li>
             </ul>
 
-            <p className="source"><strong>Fonte:</strong> <a href="https://coronavirus.saude.gov.br/index.php/sobre-a-doenca" target="_blank">Ministério da Saúde</a></p>
+            <p className="source"><strong>Fonte:</strong> <a href="https://coronavirus.saude.gov.br/index.php/sobre-a-doenca" target="_blank" rel="noopener">Ministério da Saúde</a></p>
           </Card>
         </div>
       </div>
