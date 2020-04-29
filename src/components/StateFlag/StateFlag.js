@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledImg = styled.img`
   width: 32px;
+  height: 23px;
 `;
 
 export const StateFlag = ({ state }) => (
