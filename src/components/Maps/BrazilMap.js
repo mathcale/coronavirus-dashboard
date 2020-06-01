@@ -6,15 +6,13 @@ import { MapLegend } from './MapLegend';
 import brazilStates from '../../utils/topojson/brazilStates.json';
 
 const colorScales = [
-  { color: '#FFCDD2', range: [1, 24] },
-  { color: '#EF9A9A', range: [25, 49] },
-  { color: '#E57373', range: [50, 99] },
-  { color: '#EF5350', range: [100, 199] },
-  { color: '#F44336', range: [200, 499] },
-  { color: '#E53935', range: [500, 999] },
-  { color: '#D32F2F', range: [1000, 1499] },
-  { color: '#C62828', range: [1500, 2999] },
-  { color: '#B71C1C', range: [3000, 100000] },
+  { color: '#E57373', range: [1, 999] },
+  { color: '#EF5350', range: [1000, 1999] },
+  { color: '#F44336', range: [2000, 2999] },
+  { color: '#E53935', range: [3000, 3999] },
+  { color: '#D32F2F', range: [4000, 4999] },
+  { color: '#C62828', range: [5000, 5999] },
+  { color: '#B71C1C', range: [6000, 500000] },
 ];
 
 const getFill = qty => {
