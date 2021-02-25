@@ -13,12 +13,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "sync:brazil": "node scripts/syncBrazilData.js"
   },
   "dependencies": {
     "apexcharts": "^3.25.0",
     "axios": "^0.21.1",
     "country-code-emoji": "^2.2.0",
+    "faunadb": "^4.1.1",
     "flexboxgrid": "^6.3.1",
     "fontfaceobserver": "^2.1.0",
     "isomorphic-unfetch": "^3.1.0",
@@ -34,7 +36,8 @@
     "react-lazy-load-image-component": "^1.5.1",
     "react-simple-maps": "^2.3.0",
     "react-tooltip": "^4.2.14",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "waait": "^1.0.5"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",

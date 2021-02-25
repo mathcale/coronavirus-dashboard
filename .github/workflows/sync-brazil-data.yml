@@ -1,0 +1,22 @@
+name: Syncs COVID-19's data daily from BrazilIO to our database
+
+on:
+  push:
+  schedule:
+    - cron: "0 1 * * *" # Every day at 01:00AM
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: yarn
+      - name: Run script
+        run: yarn sync:brazil
+        env:
+          COVID19_DASH_FAUNADB_SECRET: ${{ secrets.COVID19_DASH_FAUNADB_SECRET }}
+          COVID19_DASH_BRAZIL_ENDPOINT: ${{ secrets.COVID19_DASH_BRAZIL_ENDPOINT }}
+          COVID19_DASH_BRAZILIO_TOKEN: ${{ secrets.COVID19_DASH_BRAZILIO_TOKEN }}
