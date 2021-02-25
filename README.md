@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 <p align="center">
   <img src="public/img/virus.png" />
 
@@ -5,6 +6,12 @@
 
   <p align="center">
     <a href="https://covid19.matheus.me">Acessar Site</a>
+  </p>
+
+  <p align="center">
+    <a href="https://github.com/mathcale/coronavirus-dashboard/actions/workflows/sync-brazil-data.yml">
+      <img src="https://github.com/mathcale/coronavirus-dashboard/actions/workflows/sync-brazil-data.yml/badge.svg" alt="Syncs COVID-19's data daily from BrazilIO to our database"/>
+    </a>
   </p>
 </p>
 
