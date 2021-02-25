@@ -25,7 +25,7 @@ Criado com ❤️ (e álcoo-gel) por [mim mesmo 😛](https://matheus.me) para o
 
 ## Executando
 
-Tenha certeza que o [Node 10.17.x](https://nodejs.org) e o [Yarn 1.x](https://yarnpkg.com) estão instalados. Feito isso, execute os seguintes comandos:
+Tenha certeza que o [Node 12.20.x](https://nodejs.org) e o [Yarn 1.x](https://yarnpkg.com) estão instalados. Feito isso, execute os seguintes comandos:
 
 ```sh
 # Instala as dependências
