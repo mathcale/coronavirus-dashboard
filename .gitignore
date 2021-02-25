@@ -2,6 +2,7 @@ node_modules
 .next
 .DS_Store
 .now
+.vercel
 .env
 .env.build
 .env.production
