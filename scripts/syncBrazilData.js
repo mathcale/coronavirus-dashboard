@@ -1,5 +1,5 @@
 const faunadb = require('faunadb');
-const fetch = require('isomorphic-unfetch').default();
+const fetch = require('isomorphic-unfetch');
 const wait = require('waait');
 
 const q = faunadb.query;
@@ -23,8 +23,8 @@ const apiToken =  process.env.COVID19_DASH_BRAZILIO_TOKEN;
 
     const brazilLatestStates = await responseBrazilLatestStates.json();
 
-    console.log('Waiting 2 secs...');
-    await wait(2000);
+    console.log('Waiting 10 secs...');
+    await wait(10000);
 
     console.log('Fetching latest data from Brazil...');
 
@@ -42,9 +42,11 @@ const apiToken =  process.env.COVID19_DASH_BRAZILIO_TOKEN;
       ...brazilTodayCases.results,
     ];
 
+    console.log(`Starting to fetch ${totalPagesTodayCases} pages...`);
+
     for (let page = 2; page <= totalPagesTodayCases; page++) {
-      console.log('Waiting 2 secs...');
-      await wait(2000);
+      console.log('Waiting 10 secs...');
+      await wait(10000);
 
       console.log(`Fetching page ${page}...`);
       const responseBrazilTodayCasesNext = await fetch(`${apiEndpoint}?is_last=True&place_type=city&&page=${page}&format=json`);
@@ -82,17 +84,17 @@ const apiToken =  process.env.COVID19_DASH_BRAZILIO_TOKEN;
 
     console.log('Saving data on database...');
 
-    const result = await client.query(
+    await client.query(
       q.Create(
         q.Collection('summaries'),
         { data },
       )
     );
 
-    this.res.status(201).json({ result });
+    console.info('Sync completed!');
+    process.exit(0);
   } catch (err) {
-    this.res.status(500).json({
-      message: err.message,
-    });
+    console.error(`ERROR: ${err.message}`);
+    process.exit(1);
   }
 })();
