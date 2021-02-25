@@ -9,12 +9,12 @@ export default async (req, res) => {
     res.end(JSON.stringify({ message: 'Method Not Allowed!' }));
   }
   
-  console.log(`GA_TRACKING_ID: ${GA_TRACKING_ID}`);
-  console.log(`COVID19_DASH_NOVEL_ENDPOINT: ${COVID19_DASH_NOVEL_ENDPOINT}`);
-  console.log(`COVID19_DASH_WORLD_MAP_ENDPOINT: ${COVID19_DASH_WORLD_MAP_ENDPOINT}`);
-  console.log(`COVID19_DASH_NEWS_ENDPOINT: ${COVID19_DASH_NEWS_ENDPOINT}`);
-  console.log(`COVID19_DASH_BRAZIL_ENDPOINT: ${COVID19_DASH_BRAZIL_ENDPOINT}`);
-  console.log(`COVID19_DASH_FB_APP_ID: ${COVID19_DASH_FB_APP_ID}`);
+  console.log(`GA_TRACKING_ID: ${process.env.GA_TRACKING_ID}`);
+  console.log(`COVID19_DASH_NOVEL_ENDPOINT: ${process.env.COVID19_DASH_NOVEL_ENDPOINT}`);
+  console.log(`COVID19_DASH_WORLD_MAP_ENDPOINT: ${process.env.COVID19_DASH_WORLD_MAP_ENDPOINT}`);
+  console.log(`COVID19_DASH_NEWS_ENDPOINT: ${process.env.COVID19_DASH_NEWS_ENDPOINT}`);
+  console.log(`COVID19_DASH_BRAZIL_ENDPOINT: ${process.env.COVID19_DASH_BRAZIL_ENDPOINT}`);
+  console.log(`COVID19_DASH_FB_APP_ID: ${process.env.COVID19_DASH_FB_APP_ID}`);
 
   const endpoint = process.env.COVID19_DASH_NOVEL_ENDPOINT;
 
