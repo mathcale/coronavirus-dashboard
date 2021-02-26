@@ -9,6 +9,7 @@ const client = new faunadb.Client({
 
 const apiEndpoint = process.env.COVID19_DASH_BRAZIL_ENDPOINT;
 const apiToken =  process.env.COVID19_DASH_BRAZILIO_TOKEN;
+const documentRefId = process.env.COVID19_DASH_FAUNADB_DOCUMENT_REF_ID;
 
 (async () => {
   try {
@@ -85,8 +86,8 @@ const apiToken =  process.env.COVID19_DASH_BRAZILIO_TOKEN;
     console.log('Saving data on database...');
 
     await client.query(
-      q.Create(
-        q.Collection('summaries'),
+      q.Replace(
+        q.Ref(q.Collection('summaries'), documentRefId),
         { data },
       )
     );
