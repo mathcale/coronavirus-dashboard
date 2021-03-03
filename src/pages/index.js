@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
 import { Card, CardFOV, CountrySummaryCard, SummaryItem, Button } from '../components';
 import { buildAreaChartSeries } from '../utils';
-import Link from 'next/link';
 
 import brazil from '../../public/img/brazil.png';
 import donate from '../../public/img/donate.png';
@@ -21,13 +22,36 @@ const WorldMap = dynamic(
   { ssr: false },
 );
 
-const IndexPage = ({ worldData }) => {
-  const topCountries = worldData.countries.slice(0, 3);
-  const mapData = {};
+const IndexPage = () => {
+  const [worldData, setWorldData] = useState({});
+  const [topCountries, setTopCountries] = useState([]);
+  const [mapData, setMapData] = useState({});
 
-  worldData.countries.forEach(country => {
-    mapData[country.countryInfo.iso2] = country.cases;
-  });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const response = await fetch('/api/world');
+        const data = await response.json();
+        const _mapData = {};
+
+        data.countries.forEach(country => {
+          _mapData[country.countryInfo.iso2] = country.cases;
+        });
+
+        setWorldData(data);
+        setTopCountries(data.countries.slice(0, 3));
+        setMapData(_mapData);
+      } catch (err) {
+        console.error(`IndexPage.loadData: ${err.message}`);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
 
   return (
     <div className="row index-page">
@@ -38,12 +62,14 @@ const IndexPage = ({ worldData }) => {
               <div className="row" style={{ margin: '0px' }}>
                 <div className="col-md-7">
                   <h4 className="stats--title">Casos Confirmados</h4>
-                  <p className="stats--counter">{Number(worldData.today.cases).toLocaleString()}</p>
+                  <p className="stats--counter">
+                    {isLoading ? '-' : Number(worldData?.today.cases).toLocaleString()}
+                  </p>
                 </div>
 
                 <div className="col-md-5">
-                  {worldData.history &&
-                    <Chart color="#46467F" series={buildAreaChartSeries(worldData.history.cases)} />
+                  {isLoading ? '-' : worldData?.history &&
+                    <Chart color="#46467F" series={buildAreaChartSeries(worldData?.history.cases)} />
                   }
                 </div>
               </div>
@@ -55,12 +81,12 @@ const IndexPage = ({ worldData }) => {
               <div className="row" style={{ margin: '0px' }}>
                 <div className="col-md-7">
                   <h4 className="stats--title">Recuperados</h4>
-                  <p className="stats--counter">{Number(worldData.today.recovered).toLocaleString()}</p>
+                  <p className="stats--counter">{isLoading ? '-' : Number(worldData?.today.recovered).toLocaleString()}</p>
                 </div>
 
                 <div className="col-md-5">
-                  {worldData.history &&
-                    <Chart color="#27AD60" series={buildAreaChartSeries(worldData.history.recovered)} />
+                  {isLoading ? '-' : worldData?.history &&
+                    <Chart color="#27AD60" series={buildAreaChartSeries(worldData?.history.recovered)} />
                   }
                 </div>
               </div>
@@ -72,12 +98,12 @@ const IndexPage = ({ worldData }) => {
               <div className="row" style={{ margin: '0px' }}>
                 <div className="col-md-7">
                   <h4 className="stats--title">Total de Mortes</h4>
-                  <p className="stats--counter">{Number(worldData.today.deaths).toLocaleString()}</p>
+                  <p className="stats--counter">{isLoading ? '-' : Number(worldData?.today.deaths).toLocaleString()}</p>
                 </div>
 
                 <div className="col-md-5">
-                  {worldData.history &&
-                    <Chart color="#f96e64" series={buildAreaChartSeries(worldData.history.deaths)} />
+                  {isLoading ? '-' : worldData?.history &&
+                    <Chart color="#f96e64" series={buildAreaChartSeries(worldData?.history.deaths)} />
                   }
                 </div>
               </div>
@@ -88,15 +114,15 @@ const IndexPage = ({ worldData }) => {
             <Card>
               <h4 className="stats--title">Compartilhar</h4>
               <p className="stats--share">
-                <a href={`https://wa.me/?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20%2ACasos%20no%20Mundo%3A%2A%20${worldData.today.cases}%0A%F0%9F%92%80%20%2AMortes%20no%20Mundo%3A%2A%20${worldData.today.deaths}%0A%0A%2A%23FiqueEmCasa%2A`} target="_blank" rel="noopener">
+                <a href={`https://wa.me/?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20%2ACasos%20no%20Mundo%3A%2A%20${isLoading ? '0' : worldData?.today.cases}%0A%F0%9F%92%80%20%2AMortes%20no%20Mundo%3A%2A%20${isLoading ? '0' : worldData?.today.deaths}%0A%0A%2A%23FiqueEmCasa%2A`} target="_blank" rel="noopener">
                   <img src={wpp} alt="WhatsApp" style={{ width: '32px' }} />
                 </a>
 
-                <a href={`https://www.facebook.com/dialog/share?app_id=${process.env.COVID19_DASH_FB_APP_ID}&href=https://covid19.matheus.me&quote=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20Casos%20no%20Mundo%3A%20${worldData.today.cases}%0A%F0%9F%92%80%20Mortes%20no%20Mundo%3A%20${worldData.today.deaths}%0A%0A%23FiqueEmCasa`} target="_blank" rel="noopener">
+                <a href={`https://www.facebook.com/dialog/share?app_id=${process.env.COVID19_DASH_FB_APP_ID}&href=https://covid19.matheus.me&quote=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20Casos%20no%20Mundo%3A%20${isLoading ? '0' : worldData?.today.cases}%0A%F0%9F%92%80%20Mortes%20no%20Mundo%3A%20${isLoading ? '0' : worldData?.today.deaths}%0A%0A%23FiqueEmCasa`} target="_blank" rel="noopener">
                   <img src={fb} alt="Facebook" style={{ width: '32px' }} />
                 </a>
 
-                <a href={`https://twitter.com/intent/tweet?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20Casos%20no%20Mundo%3A%20${worldData.today.cases}%0A%F0%9F%92%80%20Mortes%20no%20Mundo%3A%20${worldData.today.deaths}%0A%0A%23FiqueEmCasa`} target="_blank" rel="noopener">
+                <a href={`https://twitter.com/intent/tweet?text=Acompanhe%20os%20n%C3%BAmeros%20e%20estat%C3%ADsticas%20do%20COVID-19%20no%20Brasil%20e%20no%20Mundo%20no%20site%20https%3A%2F%2Fcovid19.matheus.me%0A%0A%F0%9F%98%B7%20Casos%20no%20Mundo%3A%20${isLoading ? '0' : worldData?.today.cases}%0A%F0%9F%92%80%20Mortes%20no%20Mundo%3A%20${isLoading ? '0' : worldData?.today.deaths}%0A%0A%23FiqueEmCasa`} target="_blank" rel="noopener">
                   <img src={tt} alt="Twitter" style={{ width: '32px' }} />
                 </a>
               </p>
@@ -117,7 +143,7 @@ const IndexPage = ({ worldData }) => {
                 <div className="col-md-4 col-xs-12 with-responsive-top-spacing">
                   <h2 style={{ marginBottom: 20 }}>Mais Afetados</h2>
 
-                  {topCountries.map((country, i) => (
+                  {!isLoading && topCountries.map((country, i) => (
                     <CountrySummaryCard
                       name={country.country}
                       flag={country.countryInfo.flag}
@@ -180,7 +206,7 @@ const IndexPage = ({ worldData }) => {
           <p className="summary-column--notice">Ordenado por nº de casos confirmados</p>
 
           <div className="world-summary">
-            {worldData.countries.map((country, i) => (
+            {!isLoading && worldData?.countries.map((country, i) => (
               <SummaryItem
                 name={country.country}
                 cases={country.cases}
@@ -196,20 +222,6 @@ const IndexPage = ({ worldData }) => {
       </div>
     </div>
   )
-}
-
-export async function getServerSideProps(context) {
-  const dev = process.env.NODE_ENV !== 'production';
-  const endpoint = dev ? 'http://localhost:3000' : 'https://covid19.matheus.me'
-
-  const response = await fetch(`${endpoint}/api/world`);
-  const worldData = await response.json();
-
-  return {
-    props: {
-      worldData,
-    },
-  }
 }
 
 export default IndexPage;
